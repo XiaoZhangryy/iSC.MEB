@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1662451127471.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "16|1|25|0|\n27|34|38|0|\n39|34|49|0|\n52|60|56|0|\n57|86|79|0|\n",
+    "hash" : "0",
+    "id" : "A156C662",
+    "lastKnownWriteTime" : 1662518079,
+    "last_content_update" : 1662519002758,
+    "path" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/R/main.R",
+    "project_path" : "R/main.R",
+    "properties" : {
+        "cursorPosition" : "91,2",
+        "scrollLine" : "16",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

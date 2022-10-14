@@ -1,0 +1,29 @@
+Package: SC.MEB2
+Type: Package
+Title: Integrated spatial clustering with hidden Markov random field using empirical Bayes
+Version: 1.0
+Date: 2022-10-13
+Author@R:
+    c(person(given = "Xiao",
+             family = "Zhang",
+             role = c("aut", "cre"),
+             email = "xiao.zhang@duke-nus.edu.sg"),
+      person(given = "Wei",
+             family = "Liu",
+             role = c("aut", "cre")),
+      person(given = "Jin",
+             family = "Liu",
+             role = "aut"))
+Author: Xiao Zhang [aut, cre], Wei Liu [aut, cre], Jin Liu [aut]
+Maintainer: Xiao Zhang <xiao.zhang@duke-nus.edu.sg>
+Description: An efficient data integration method is provided for multiple spatial transcriptomics data with non-cluster-relevant effects such as the complex batch effects.
+License: GPL-3
+Depends: gtools, R (>= 4.0.0)
+Imports: Rcpp (>= 1.0.8.3), mclust, irlba, stats, parallel, pbapply, purrr, Matrix, DR.SC, methods, Seurat, dplyr
+LinkingTo: Rcpp, RcppArmadillo
+LazyData: true
+URL: https://github.com/****
+BugReports: https://github.com/****/issues
+NeedsCompilation: yes
+RoxygenNote: 7.1.2
+Encoding: UTF-8

@@ -1,0 +1,149 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 8,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 19,
+                "name" : "get_spNbs(arma::ivec, const arma::sp_mat &)",
+                "parent_name" : "",
+                "usr" : "c:@F@get_spNbs#$@N@arma@S@Col>#I#&1$@N@arma@S@SpMat>#d#"
+            },
+            {
+                "column" : 11,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 49,
+                "name" : "calYenergy2D_sp(const arma::ivec &, const arma::sp_mat &, int, const arma::vec, const double)",
+                "parent_name" : "",
+                "usr" : "c:@F@calYenergy2D_sp#&1$@N@arma@S@Col>#I#&1$@N@arma@S@SpMat>#d#I#1$@N@arma@S@Col>#d#1d#"
+            },
+            {
+                "column" : 8,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 81,
+                "name" : "obj_beta(const field<arma::ivec> &, const field<arma::mat> &, const arma::field<sp_mat> &, int, const arma::vec, const double)",
+                "parent_name" : "",
+                "usr" : "c:@F@obj_beta#&1$@N@arma@S@field>#$@N@arma@S@Col>#I#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#&1$@N@arma@S@field>#$@N@arma@S@SpMat>#d#I#1$@N@arma@S@Col>#d#1d#"
+            },
+            {
+                "column" : 8,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 94,
+                "name" : "objr_beta(const arma::ivec &, const arma::mat &, const arma::sp_mat &, int, const arma::vec, const double)",
+                "parent_name" : "",
+                "usr" : "c:@F@objr_beta#&1$@N@arma@S@Col>#I#&1$@N@arma@S@Mat>#d#&1$@N@arma@S@SpMat>#d#I#1$@N@arma@S@Col>#d#1d#"
+            },
+            {
+                "column" : 5,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 105,
+                "name" : "decomp(const arma::mat &, const arma::mat &)",
+                "parent_name" : "",
+                "usr" : "c:@F@decomp#&1$@N@arma@S@Mat>#d#S0_#"
+            },
+            {
+                "column" : 6,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 117,
+                "name" : "multi_det_Sk_embedCpp(const arma::mat &, const arma::mat &, const arma::rowvec, double &, arma::vec &)",
+                "parent_name" : "",
+                "usr" : "c:@F@multi_det_Sk_embedCpp#&1$@N@arma@S@Mat>#d#S0_#1$@N@arma@S@Row>#d#&d#&$@N@arma@S@Col>#d#"
+            },
+            {
+                "column" : 5,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 145,
+                "name" : "update_embed_Mu1(const arma::field<mat> &, const arma::field<cube> &, const arma::mat &)",
+                "parent_name" : "",
+                "usr" : "c:@F@update_embed_Mu1#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#&1$@N@arma@S@field>#$@N@arma@S@Cube>#d#&1S2_#"
+            },
+            {
+                "column" : 6,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 164,
+                "name" : "update_embed_Sigma1(const field<arma::mat> &, const field<arma::cube> &, const field<arma::cube> &, const arma::mat &, const arma::mat &, const bool &, const bool &)",
+                "parent_name" : "",
+                "usr" : "c:@F@update_embed_Sigma1#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#&1$@N@arma@S@field>#$@N@arma@S@Cube>#d#S3_#&1S2_#S6_#&1b#S7_#"
+            },
+            {
+                "column" : 6,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 209,
+                "name" : "update_embed_Sigma2(const field<arma::mat> &, const field<arma::cube> &, const field<arma::cube> &, const arma::mat &, const arma::mat &, const bool &, const bool &)",
+                "parent_name" : "",
+                "usr" : "c:@F@update_embed_Sigma2#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#&1$@N@arma@S@field>#$@N@arma@S@Cube>#d#S3_#&1S2_#S6_#&1b#S7_#"
+            },
+            {
+                "column" : 5,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 246,
+                "name" : "update_embed_Lam1(const field<arma::mat> &, const field<arma::mat> &, const arma::mat &, const field<arma::cube> &, const field<arma::cube> &, const bool &)",
+                "parent_name" : "",
+                "usr" : "c:@F@update_embed_Lam1#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#S0_#&1S2_#&1$@N@arma@S@field>#$@N@arma@S@Cube>#d#S4_#&1b#"
+            },
+            {
+                "column" : 6,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 273,
+                "name" : "update_embed_Psi(const field<arma::mat> &, const field<arma::mat> &, const field<arma::cube> &, const field<arma::cube> &, const arma::mat &)",
+                "parent_name" : "",
+                "usr" : "c:@F@update_embed_Psi#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#S0_#&1$@N@arma@S@field>#$@N@arma@S@Cube>#d#S3_#&1S2_#"
+            },
+            {
+                "column" : 5,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 295,
+                "name" : "update_embed_beta(const arma::field<ivec> &, const field<arma::mat> &, const field<arma::sp_mat> &, const arma::vec &, const arma::vec &, const bool &)",
+                "parent_name" : "",
+                "usr" : "c:@F@update_embed_beta#&1$@N@arma@S@field>#$@N@arma@S@Col>#I#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#&1$@N@arma@S@field>#$@N@arma@S@SpMat>#d#&1$@N@arma@S@Col>#d#S9_#&1b#"
+            },
+            {
+                "column" : 11,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 321,
+                "name" : "get_Vmean(const arma::mat &, const arma::sp_mat &)",
+                "parent_name" : "",
+                "usr" : "c:@F@get_Vmean#&1$@N@arma@S@Mat>#d#&1$@N@arma@S@SpMat>#d#"
+            },
+            {
+                "column" : 6,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 414,
+                "name" : "runICM_sp_embed(const arma::field<mat> &, arma::field<ivec> &, arma::field<mat> &, const arma::mat &, const arma::mat &, const arma::cube &, arma::cube &, const arma::field<sp_mat> &, const arma::vec &, const arma::vec &, int, double &, field<arma::mat> &, field<arma::mat> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, const bool &)",
+                "parent_name" : "",
+                "usr" : "c:@F@runICM_sp_embed#&1$@N@arma@S@field>#$@N@arma@S@Mat>#d#&$@N@arma@S@field>#$@N@arma@S@Col>#I#&S1_#&1S2_#S7_#&1$@N@arma@S@Cube>#d#&S9_#&1$@N@arma@S@field>#$@N@arma@S@SpMat>#d#&1$@N@arma@S@Col>#d#S14_#I#&d#S6_#S6_#&$@N@arma@S@field>#S9_#S17_#S17_#S17_#S17_#S17_#&1b#"
+            },
+            {
+                "column" : 13,
+                "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+                "kind" : 6,
+                "line" : 546,
+                "name" : "SepSpatialClusterCpp(const Rcpp::List &, const Rcpp::List &, const Rcpp::List &, const arma::mat &, const arma::cube &, const arma::cube &, const double &, const arma::vec &, const int &, const int &, const double &, const bool &, const bool &, const bool &, const bool &, const bool &)",
+                "parent_name" : "",
+                "usr" : "c:@F@SepSpatialClusterCpp#&1I#S0_#S0_#&1$@N@arma@S@Mat>#d#&1$@N@arma@S@Cube>#d#S3_#&1d#&1$@N@arma@S@Col>#d#S0_#S0_#S5_#&1b#S8_#S8_#S8_#S8_#"
+            }
+        ],
+        "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/DR_removebatch.cpp",
+        "file_last_write" : 1662451540.000000
+    },
+    {
+        "definitions" : [
+        ],
+        "file" : "D:/LearnFiles/Research paper/SC-MEB2/RcppCode/SC.MEB2/src/rcpparma_hello_world.cpp",
+        "file_last_write" : 1662450571.000000
+    }
+]

@@ -1,0 +1,114 @@
+
+# Define functions --------------------------------------------------------
+
+
+approxPCA <- function(X, q){ ## speed the computation for initial values.
+  require(irlba)
+  n <- nrow(X)
+  svdX  <- irlba(A =X, nv = q)
+  PCs <- svdX$u %*% diag(svdX$d[1:q])
+  loadings <- svdX$v
+  dX <- PCs %*% t(loadings) - X
+  Lam_vec <- colSums(dX^2)/n
+  return(list(PCs = PCs, loadings = loadings, Lam_vec = Lam_vec))
+}
+
+matlist2mat <- function (XList) 
+{
+  r_max <- length(XList)
+  X0 <- XList[[1]]
+  if (r_max > 1) {
+    for (r in 2:r_max) {
+      X0 <- rbind(X0, XList[[r]])
+    }
+  }
+  return(X0)
+}
+
+vec2list <- function(y_int, nvec){
+  if(length(y_int) != sum(nvec)) stop("vec2list: Check the argument: nvec!")
+  
+  yList_int <- list()
+  istart <- 1
+  for(i in 1:length(nvec)){
+    
+    yList_int[[i]] <- y_int[istart: sum(nvec[1:i])]
+    istart <- istart + nvec[i]
+  }
+  return(yList_int)
+}
+mat2list <- function(z_int, nvec){
+  
+  zList_int <- list()
+  istart <- 1
+  for(i in 1:length(nvec)){
+    
+    zList_int[[i]] <- z_int[istart: sum(nvec[1:i]), ]
+    istart <- istart + nvec[i]
+  }
+  return(zList_int)
+}
+
+
+mycluster <- function(Z, G, int.model='EEE', verbose=FALSE){
+  require(mclust)
+  mclus2 <- mclust::Mclust(Z, G=G,modelNames =int.model ,verbose=verbose)
+  return(mclus2)
+}
+parafun_int <- function(k, Z, Sigma_equal, Sigma_diag,int.model='EEE', verbose=FALSE){
+  
+  mclus2 <- mycluster(Z, G=k, int.model =int.model ,verbose=verbose)
+  
+  
+  Mu0k <- t(mclus2$parameters$mean)
+  Sigmak <- mclus2$parameters$variance$sigma
+  Sigma0k <- Sigmak
+  if(Sigma_diag){
+    Sigma0k <- array(0, dim=dim(Sigmak))
+    for(kk in 1:k){
+      diag(Sigma0k[,,kk]) <- diag(Sigmak[,,kk])
+    }
+    Sigmak <- Sigma0k
+  }
+  if(Sigma_equal){
+    for(kk in 1:k){
+      Sigma0k[,,kk] <- apply(Sigmak, c(1,2), mean)
+    }
+  }
+  Pi0k <- mclus2$parameters$pro
+  return(list(y0k = mclus2$classification, Mu0k=Mu0k, Sigma0k=Sigma0k, Pi0k=Pi0k))
+}
+
+SC.MEB2 <- function(VList, AdjList, K, beta_grid=seq(0, 5, by=0.2), maxIter_ICM=6, maxIter=25, epsLogLik=1e-5, 
+                               verbose=TRUE, int.model="EEE", error_heter = TRUE, Sigma_equal = FALSE, Sigma_diag = TRUE, 
+                               seed=1){
+  
+  
+  M <- length(VList)
+  q <- ncol(VList[[1]])
+  
+  Psi_int <- array(dim=c(q,q, M))
+  for( j in 1: M)  Psi_int[,,j] <-  cov(VList[[j]]/4)
+  
+  message("Evaluate initial values...")
+  set.seed(seed)
+  intlist <- parafun_int(K, matlist2mat(VList), Sigma_equal = Sigma_equal, 
+                         Sigma_diag=Sigma_diag, int.model=int.model, verbose=verbose) 
+    
+  
+  Mu_int <- intlist$Mu0k; Sigma_int <- intlist$Sigma0k
+  y_int <- intlist$y0k
+  
+  yList_int <- vec2list(y_int, nvec=sapply(VList, nrow))
+  
+  message("Fit SC-MEB2...")
+  Sp_embed <- TRUE
+  reslist <- SepSpatialClusterCpp(VList, AdjList, yList_int, Mu_int, Sigma_int, 
+                                  Psi_int, beta_int=1.5, beta_grid, maxIter_ICM, maxIter, epsLogLik, 
+                                  verbose, homo = !error_heter, Sigma_equal, Sigma_diag, Sp_embed) 
+  
+  return(reslist)
+}
+
+
+
