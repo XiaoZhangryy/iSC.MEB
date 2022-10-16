@@ -83,19 +83,19 @@ selectIntFeatures <- function(seulist, spaFeatureList, IntFeatures=2000){
   return(genelist)
 }
 
-#' Each ISCMEBObj object has a number of slots which store information.
+#' Each iSCMEBObj object has a number of slots which store information.
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
-#' @description Each ISCMEBObj object has a number of slots which store information. Key slots to access are listed below.
+#' @useDynLib iSC.MEB, .registration = TRUE
+#' @description Each iSCMEBObj object has a number of slots which store information. Key slots to access are listed below.
 #' \itemize{
 #'   \item \code{seuList} - A list with Seurat object as component, representing the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information is saved in the metadata of Seurat, named "row" and "col" for eahc data batch.
 #'   \item \code{seulist} - A Seurat list after the preprocessing step in preparation for ISCMEB model.
-#'   \item \code{AdjList} - The adjacency matrix list for a ISCMEBObj object.
-#'   \item \code{parameterList} - The model parameter settings for a ISCMEBObj object.
+#'   \item \code{AdjList} - The adjacency matrix list for a iSCMEBObj object.
+#'   \item \code{parameterList} - The model parameter settings for a iSCMEBObj object.
 #'   \item \code{resList} - The results after fitting ISCMEB models.
 #'   \item \code{project} - Name of the project.
 #' }
-setClass("ISCMEBObj", slots=list(
+setClass("iSCMEBObj", slots=list(
   seuList = "ANY",
   seulist = "ANY",
   AdjList = "ANY", 
@@ -106,7 +106,7 @@ setClass("ISCMEBObj", slots=list(
 
 #' Create the ISCMEB object with preprocessing step.
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
+#' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
 #' @param seuList A list consisting of Seurat objects, where each object is a SRT data batch. The default assay of each Seurat object will be used for data preprocessing and followed model fitting. The specified format about seuList argument can be referred to the details and example. 
 #' @param project An optional string, name of the project, default as "ISCMEB".
@@ -124,7 +124,7 @@ setClass("ISCMEBObj", slots=list(
 #' @details seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch.
 #'
 #' @return Returns ISCMEB object prepared for ISCMEB model fitting.
-#' @seealso \code{\link{ISCMEBObj-class}}
+#' @seealso \code{\link{iSCMEBObj-class}}
 #'
 #' @importFrom pbapply pbapply
 #' @importFrom DR.SC FindSVGs topSVGs
@@ -133,9 +133,9 @@ setClass("ISCMEBObj", slots=list(
 #' @import gtools
 #'
 #' @examples
-#' data(ISCMEBObj_toy)
+#' data(iSCMEBObj_toy)
 #' library(Seurat)
-#' seuList <- ISCMEBObj_toy@seulist
+#' seuList <- iSCMEBObj_toy@seulist
 #' ## Check the input of seuList for create ISCMEB object.
 #' ## Check the default assay for each data batch
 #' sapply(seuList, DefaultAssay)
@@ -145,16 +145,16 @@ setClass("ISCMEBObj", slots=list(
 #' ## For convenience, we show the  user-specified genes' list for creating ISCMEB object. 
 #' ## Users can use SVGs from SPARK-X or HVGs.
 #' Genelist <- row.names(seuList[[1]])
-#' ISCMEBObj_toy2 <- CreateISCMEBObject(seuList, customGenelist=Genelist, verbose=FALSE)
-CreateISCMEBObject <- function(seuList, project = "ISCMEB", gene.number=2000, 
+#' iSCMEBObj_toy2 <- CreateiSCMEBObject(seuList, customGenelist=Genelist, verbose=FALSE)
+CreateiSCMEBObject <- function(seuList, project = "ISCMEB", gene.number=2000, 
     selectGenesMethod='SPARK-X', numCores_sparkx=1, customGenelist=NULL, 
     premin.spots = 20, premin.features=20, postmin.spots=15, postmin.features=15,
     rawData.preserve=FALSE, verbose=TRUE ){
-    if(!inherits(seuList, "list")) stop("CreateISCMEBObject: check the argument: seuList! it must be a list.")
+    if(!inherits(seuList, "list")) stop("CreateiSCMEBObject: check the argument: seuList! it must be a list.")
     
     # Check Seurat object
     flag <- sapply(seuList, function(x) !inherits(x, "Seurat"))
-    if(any(flag)) stop("CreateISCMEBObject: check the argument: seuList! Each component of seuList must be a Seurat object.")
+    if(any(flag)) stop("CreateiSCMEBObject: check the argument: seuList! Each component of seuList must be a Seurat object.")
     
     # Check spatial coordinates for each object.
     exist_spatial_coods <- function(seu){
@@ -162,19 +162,19 @@ CreateISCMEBObject <- function(seuList, project = "ISCMEB", gene.number=2000,
         return(flag_spatial)
     }
     flag_spa <- sapply(seuList,    exist_spatial_coods)
-    if(any(!flag_spa)) stop("CreateISCMEBObject: check the argument: seuList! Each Seurat object in seuList must include the spatial coordinates saved in the meta.data, named 'row' and 'col'!")
+    if(any(!flag_spa)) stop("CreateiSCMEBObject: check the argument: seuList! Each Seurat object in seuList must include the spatial coordinates saved in the meta.data, named 'row' and 'col'!")
     
     # Check cores 
     if(numCores_sparkx<0) 
-        stop("CreateISCMEBObject: check the argument: numCores_sparkx! It must be a positive integer.")
+        stop("CreateiSCMEBObject: check the argument: numCores_sparkx! It must be a positive integer.")
  
     # Check customGenelist
     if(!is.null(customGenelist) && (!is.character(customGenelist))) 
-        stop("CreateISCMEBObject: check the argument: customGenelist! It must be NULL or a character vector.")
+        stop("CreateiSCMEBObject: check the argument: customGenelist! It must be NULL or a character vector.")
     
     ## inheriting
     object <- new(
-        Class = "ISCMEBObj",
+        Class = "iSCMEBObj",
         seuList = seuList,
         seulist = NULL,
         AdjList = NULL, 
@@ -202,7 +202,7 @@ CreateISCMEBObject <- function(seuList, project = "ISCMEB", gene.number=2000,
             }
             spaFeatureList <- lapply(seuList, getHVGs)
         }else{
-            stop("CreateISCMEBObject: check the argument: selectGenesMethod! It only support 'SPARK-X' and 'HVGs' to select genes now. You can provide self-selected genes using customGenelist argument.")
+            stop("CreateiSCMEBObject: check the argument: selectGenesMethod! It only support 'SPARK-X' and 'HVGs' to select genes now. You can provide self-selected genes using customGenelist argument.")
         }
         
         spaFeatureList <- lapply(spaFeatureList, function(x) x[!is.na(x)])
@@ -219,7 +219,7 @@ CreateISCMEBObject <- function(seuList, project = "ISCMEB", gene.number=2000,
         genelist <- customGenelist
         geneNames <- Reduce(intersect,(lapply(seuList, row.names))) # intersection of    genes from each sample
         if(any(!(customGenelist %in% geneNames)))
-            stop("CreateISCMEBObject: check the argument: customGenelist! It contains the gene not in seuList.")
+            stop("CreateiSCMEBObject: check the argument: customGenelist! It contains the gene not in seuList.")
     }
     
     seulist <- lapply(seuList, function(x) x[genelist, ])

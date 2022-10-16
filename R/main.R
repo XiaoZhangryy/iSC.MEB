@@ -71,7 +71,7 @@ get_initial_value4seqK <- function(
 
 #' Fit a ISCMEB model.
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
+#' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
 #' @param VList A list of PCs of log-normalized gene expression matrix. The i-th element is a ni * npcs matrtix, where ni is the number of spots of sample i, and npcs is the number of PC. We provide this interface for those users who would like to define the PCs by their own. 
 #' @param AdjList A list of adjacency matrix with class \code{dgCMatrix}. We provide this interface for those users who would like to define the adjacency matrix by their own.
@@ -96,14 +96,14 @@ get_initial_value4seqK <- function(
 #' @importFrom stats cov
 #'
 #' @examples
-#' data(ISCMEBObj_toy)
+#' data(iSCMEBObj_toy)
 #' library(Seurat)
-#' XList <- lapply(ISCMEBObj_toy@seulist, function(x) Matrix::t(x@assays$RNA@data))
+#' XList <- lapply(iSCMEBObj_toy@seulist, function(x) Matrix::t(x@assays$RNA@data))
 #' VList <- runPCA(XList)
-#' posList <- lapply(ISCMEBObj_toy@seulist, function(x) x@meta.data[,c("row", "col")])
+#' posList <- lapply(iSCMEBObj_toy@seulist, function(x) x@meta.data[,c("row", "col")])
 #' AdjList <- CreateNeighbors(posList, platform = "Visium")
-#' resList <- SC.MEB2(VList, AdjList, K=7, maxIter=10)
-SC.MEB2 <- function(
+#' resList <- fit.iscmeb(VList, AdjList, K=7, maxIter=10)
+fit.iscmeb <- function(
     VList, AdjList, K, beta_grid=seq(0, 5, by=0.2), maxIter_ICM=6, maxIter=25, 
     epsLogLik=1e-5, verbose=TRUE, int.model="EEE", init.start=1, 
     Sigma_equal = FALSE, Sigma_diag = TRUE, seed=1, coreNum=1, 
@@ -215,53 +215,53 @@ degree.freedom <- function(K, q, nT, Sigma_equal, Sigma_diag, Sp_embed) {
 
 #' Fit a ISCMEB model.
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
+#' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
-#' @param ISCMEBObj A ISCMEBObj object. 
+#' @param iSCMEBObj A iSCMEBObj object. 
 #' @param K An optional integer or integer vector, specify the candidates of number of clusters. if \code{K=NULL}, it will be set to 4~12.
 #'
 #' @details The model results are saved in the slot of resList.
 #'
-#' @return Returns a revised ISCMEBObj object.
-#' @seealso \code{\link{ISCMEBObj-class}}, \code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{SetModelParameters}}
+#' @return Returns a revised iSCMEBObj object.
+#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{SetModelParameters}}
 #'
 #' @examples
-#' data(ISCMEBObj_toy)
+#' data(iSCMEBObj_toy)
 #' library(Seurat)
-#' ISCMEBObj_toy <- runPCA(ISCMEBObj_toy)
-#' ISCMEBObj_toy <- CreateNeighbors(ISCMEBObj_toy, platform = "Visium")
-#' ISCMEBObj_toy <- SetModelParameters(ISCMEBObj_toy, maxIter=10)
-#' ISCMEBObj_toy <- ISCMEB(ISCMEBObj_toy, K = 7)
-ISCMEB <- function(ISCMEBObj, K=NULL){
-    if(!inherits(ISCMEBObj, "ISCMEBObj")) 
-        stop("ISCMEB: Check the argument: ISCMEBObj! ISCMEBObj must be a ISCMEBObj object.")
+#' iSCMEBObj_toy <- runPCA(iSCMEBObj_toy)
+#' iSCMEBObj_toy <- CreateNeighbors(iSCMEBObj_toy, platform = "Visium")
+#' iSCMEBObj_toy <- SetModelParameters(iSCMEBObj_toy, maxIter=10)
+#' iSCMEBObj_toy <- iSCMEB(iSCMEBObj_toy, K = 7)
+iSCMEB <- function(iSCMEBObj, K=NULL){
+    if(!inherits(iSCMEBObj, "iSCMEBObj")) 
+        stop("ISCMEB: Check the argument: iSCMEBObj! iSCMEBObj must be a iSCMEBObj object.")
     
     if(is.null(K)) K <- 4:12
-    if(is.null(ISCMEBObj@seulist)) stop("The slot seulist in ISCMEBObj is NULL!")
+    if(is.null(iSCMEBObj@seulist)) stop("The slot seulist in iSCMEBObj is NULL!")
     
     ## Get pcs
-    reduction.name <- ISCMEBObj@parameterList$reduction.name
-    VList <- lapply(ISCMEBObj@seulist, function(seu) seu[[reduction.name]]@cell.embeddings)
+    reduction.name <- iSCMEBObj@parameterList$reduction.name
+    VList <- lapply(iSCMEBObj@seulist, function(seu) seu[[reduction.name]]@cell.embeddings)
   
     # get parameters
-    beta_grid <- ISCMEBObj@parameterList$beta_grid
-    maxIter_ICM <- ISCMEBObj@parameterList$maxIter_ICM
-    maxIter <- ISCMEBObj@parameterList$ maxIter
-    epsLogLik <- ISCMEBObj@parameterList$epsLogLik
-    verbose <- ISCMEBObj@parameterList$verbose
-    int.model <- ISCMEBObj@parameterList$int.model
-    init.start <- ISCMEBObj@parameterList$init.start
-    Sigma_equal <- ISCMEBObj@parameterList$Sigma_equal 
-    Sigma_diag <- ISCMEBObj@parameterList$Sigma_diag
-    seed <- ISCMEBObj@parameterList$seed
-    coreNum <- ISCMEBObj@parameterList$coreNum
-    criteria <- ISCMEBObj@parameterList$criteria
-    c_penalty <- ISCMEBObj@parameterList$c_penalty
+    beta_grid <- iSCMEBObj@parameterList$beta_grid
+    maxIter_ICM <- iSCMEBObj@parameterList$maxIter_ICM
+    maxIter <- iSCMEBObj@parameterList$ maxIter
+    epsLogLik <- iSCMEBObj@parameterList$epsLogLik
+    verbose <- iSCMEBObj@parameterList$verbose
+    int.model <- iSCMEBObj@parameterList$int.model
+    init.start <- iSCMEBObj@parameterList$init.start
+    Sigma_equal <- iSCMEBObj@parameterList$Sigma_equal 
+    Sigma_diag <- iSCMEBObj@parameterList$Sigma_diag
+    seed <- iSCMEBObj@parameterList$seed
+    coreNum <- iSCMEBObj@parameterList$coreNum
+    criteria <- iSCMEBObj@parameterList$criteria
+    c_penalty <- iSCMEBObj@parameterList$c_penalty
   
     ## Centering
-    ISCMEBObj@resList <- SC.MEB2(
+    iSCMEBObj@resList <- fit.iscmeb(
         VList, 
-        AdjList = ISCMEBObj@AdjList, 
+        AdjList = iSCMEBObj@AdjList, 
         K=K, 
         beta_grid= beta_grid,
         maxIter_ICM=maxIter_ICM,
@@ -277,6 +277,6 @@ ISCMEB <- function(ISCMEBObj, K=NULL){
         criteria=criteria,
         c_penalty=c_penalty)
     
-    return(ISCMEBObj)
+    return(iSCMEBObj)
 }
 

@@ -1,31 +1,31 @@
 #' Select best ISCMEB model from candidated models. 
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
+#' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
-#' @param obj A ISCMEBObj object or SCMEB_Result_Object object. 
+#' @param obj A iSCMEBObj object or SCMEB_Result_Object object. 
 #' @param criteria A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).
 #' @param c_penalty An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).
 #' @param K An optional number of cluster. When K is not null, the ISCMEB solution with K clusters will be selected, default is \code{NULL}. 
 #'
-#' @details SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function SC.MEB2, which is the main function of our package. 
+#' @details SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
 #' 
-#' @seealso \code{\link{ISCMEBObj-class}}, \code{\link{SC.MEB2}}
+#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
 #'
 #' @examples
-#' data(ISCMEBObj_toy)
+#' data(iSCMEBObj_toy)
 #' library(Seurat)
-#' ## For convenience, we show the ISCMEBObj for perform dimension reduction. 
+#' ## For convenience, we show the iSCMEBObj for perform dimension reduction. 
 #' ## Users can use PCA method or WPCA.
-#' ISCMEBObj_toy2 <- runPCA(ISCMEBObj_toy)
-#' ## seulist <- ISCMEBObj_toy$seulist
+#' iSCMEBObj_toy2 <- runPCA(iSCMEBObj_toy)
+#' ## seulist <- iSCMEBObj_toy$seulist
 #' ## seulist <- runPCA(seulist)
 SelectModel <- function(obj, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty = 1, K = NULL) UseMethod("SelectModel")
 
-#' @return Returns a revised ISCMEBObj object.
+#' @return Returns a revised iSCMEBObj object.
 #' @rdname SelectModel
-#' @method SelectModel ISCMEBObj
+#' @method SelectModel iSCMEBObj
 #' @export
-SelectModel.ISCMEBObj <- function(obj, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty = 1, K = NULL) {
+SelectModel.iSCMEBObj <- function(obj, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty = 1, K = NULL) {
     obj@resList <- selectmodel(obj@resList, criteria=criteria, c_penalty = c_penalty, K = K)
     obj
 }

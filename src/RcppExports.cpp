@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // SepSpatialClusterCpp
 Rcpp::List SepSpatialClusterCpp(const Rcpp::List& vList, const Rcpp::List& Adjlist, const Rcpp::List& yList_int, const Rcpp::List& Mu_int, const Rcpp::List& Sigma_int, const arma::cube& Psi_int, const double& beta_int, const arma::vec& beta_grid, const int& maxIter_ICM, const int& maxIter, const double& epsLogLik, const bool& verbose, const bool& homo, const bool& Sigma_equal, const bool& Sigma_diag, const bool& Sp_embed, const arma::uword& maxK, const arma::uword& minK, const int& coreNum);
-RcppExport SEXP _SC_MEB2_SepSpatialClusterCpp(SEXP vListSEXP, SEXP AdjlistSEXP, SEXP yList_intSEXP, SEXP Mu_intSEXP, SEXP Sigma_intSEXP, SEXP Psi_intSEXP, SEXP beta_intSEXP, SEXP beta_gridSEXP, SEXP maxIter_ICMSEXP, SEXP maxIterSEXP, SEXP epsLogLikSEXP, SEXP verboseSEXP, SEXP homoSEXP, SEXP Sigma_equalSEXP, SEXP Sigma_diagSEXP, SEXP Sp_embedSEXP, SEXP maxKSEXP, SEXP minKSEXP, SEXP coreNumSEXP) {
+RcppExport SEXP _iSC_MEB_SepSpatialClusterCpp(SEXP vListSEXP, SEXP AdjlistSEXP, SEXP yList_intSEXP, SEXP Mu_intSEXP, SEXP Sigma_intSEXP, SEXP Psi_intSEXP, SEXP beta_intSEXP, SEXP beta_gridSEXP, SEXP maxIter_ICMSEXP, SEXP maxIterSEXP, SEXP epsLogLikSEXP, SEXP verboseSEXP, SEXP homoSEXP, SEXP Sigma_equalSEXP, SEXP Sigma_diagSEXP, SEXP Sp_embedSEXP, SEXP maxKSEXP, SEXP minKSEXP, SEXP coreNumSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -42,7 +42,7 @@ END_RCPP
 }
 // getneighborhood_fast
 arma::sp_umat getneighborhood_fast(const arma::mat x, double radius);
-RcppExport SEXP _SC_MEB2_getneighborhood_fast(SEXP xSEXP, SEXP radiusSEXP) {
+RcppExport SEXP _iSC_MEB_getneighborhood_fast(SEXP xSEXP, SEXP radiusSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -54,7 +54,7 @@ END_RCPP
 }
 // wpcaCpp
 Rcpp::List wpcaCpp(const arma::mat& X, const int& nPCs, const bool& weighted);
-RcppExport SEXP _SC_MEB2_wpcaCpp(SEXP XSEXP, SEXP nPCsSEXP, SEXP weightedSEXP) {
+RcppExport SEXP _iSC_MEB_wpcaCpp(SEXP XSEXP, SEXP nPCsSEXP, SEXP weightedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -67,13 +67,13 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_SC_MEB2_SepSpatialClusterCpp", (DL_FUNC) &_SC_MEB2_SepSpatialClusterCpp, 19},
-    {"_SC_MEB2_getneighborhood_fast", (DL_FUNC) &_SC_MEB2_getneighborhood_fast, 2},
-    {"_SC_MEB2_wpcaCpp", (DL_FUNC) &_SC_MEB2_wpcaCpp, 3},
+    {"_iSC_MEB_SepSpatialClusterCpp", (DL_FUNC) &_iSC_MEB_SepSpatialClusterCpp, 19},
+    {"_iSC_MEB_getneighborhood_fast", (DL_FUNC) &_iSC_MEB_getneighborhood_fast, 2},
+    {"_iSC_MEB_wpcaCpp", (DL_FUNC) &_iSC_MEB_wpcaCpp, 3},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_SC_MEB2(DllInfo *dll) {
+RcppExport void R_init_iSC_MEB(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

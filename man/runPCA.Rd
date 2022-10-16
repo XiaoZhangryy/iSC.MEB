@@ -2,7 +2,7 @@
 % Please edit documentation in R/RunPCA.r
 \name{runPCA}
 \alias{runPCA}
-\alias{runPCA.ISCMEBObj}
+\alias{runPCA.iSCMEBObj}
 \alias{runPCA.list}
 \title{Run a PCA dimensionality reduction.}
 \usage{
@@ -13,7 +13,7 @@ runPCA(
   reduction.name = "pca"
 )
 
-\method{runPCA}{ISCMEBObj}(
+\method{runPCA}{iSCMEBObj}(
   obj,
   npcs = 15,
   pca.method = c("APCA", "PCA", "WPCA"),
@@ -28,7 +28,7 @@ runPCA(
 )
 }
 \arguments{
-\item{obj}{A seuList or ISCMEBObj object or matrix list.}
+\item{obj}{A seuList or iSCMEBObj object or matrix list.}
 
 \item{npcs}{Total Number of PCs to compute and store (15 by default).}
 
@@ -37,7 +37,7 @@ runPCA(
 \item{reduction.name}{Dimensional reduction name, pca by default}
 }
 \value{
-Returns a revised ISCMEBObj object when input a ISCMEBObj.
+Returns a revised iSCMEBObj object when input a iSCMEBObj.
 
 Returns a revised list when input a seuList or matrix list.
 }
@@ -48,14 +48,14 @@ Run a PCA dimensionality reduction.
 seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. matrix list is a list of log-transformed expression matrix, element of which has same columns.
 }
 \examples{
-data(ISCMEBObj_toy)
+data(iSCMEBObj_toy)
 library(Seurat)
-## For convenience, we show the ISCMEBObj for perform dimension reduction. 
+## For convenience, we show the iSCMEBObj for perform dimension reduction. 
 ## Users can use PCA method or WPCA.
-ISCMEBObj_toy2 <- runPCA(ISCMEBObj_toy)
-## seulist <- ISCMEBObj_toy$seulist
+iSCMEBObj_toy2 <- runPCA(iSCMEBObj_toy)
+## seulist <- iSCMEBObj_toy$seulist
 ## seulist <- runPCA(seulist)
 }
 \seealso{
-\code{\link{ISCMEBObj-class}}
+\code{\link{iSCMEBObj-class}}
 }

@@ -1,4 +1,4 @@
-Package: SC.MEB2
+Package: iSC.MEB
 Type: Package
 Title: Integrated spatial clustering with hidden Markov random field using empirical Bayes
 Version: 1.0
@@ -22,8 +22,8 @@ Depends: gtools, R (>= 4.0.0)
 Imports: Rcpp (>= 1.0.8.3), mclust, irlba, stats, parallel, pbapply, purrr, Matrix, DR.SC, methods, Seurat, dplyr
 LinkingTo: Rcpp, RcppArmadillo
 LazyData: true
-URL: https://github.com/XiaoZhangryy/ISC-MEB
-BugReports: https://github.com/XiaoZhangryy/ISC-MEB/issues
+URL: https://github.com/XiaoZhangryy/iSC-MEB
+BugReports: https://github.com/XiaoZhangryy/iSC-MEB/issues
 NeedsCompilation: yes
 RoxygenNote: 7.1.2
 Encoding: UTF-8

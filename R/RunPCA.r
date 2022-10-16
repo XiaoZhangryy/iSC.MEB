@@ -33,34 +33,34 @@ matlist2mat <- function (XList) {
 
 #' Run a PCA dimensionality reduction.
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
+#' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
-#' @param obj A seuList or ISCMEBObj object or matrix list. 
+#' @param obj A seuList or iSCMEBObj object or matrix list. 
 #' @param npcs Total Number of PCs to compute and store (15 by default). 
 #' @param pca.method A string, specify which kind of PCA to be used. Supporting "APCA" (the approximate PCA), "PCA" (the classical PCA) and "WPCA" (the weighted PCA). Default method is APCA. 
 #' @param reduction.name Dimensional reduction name, pca by default
 #'
 #' @details seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. matrix list is a list of log-transformed expression matrix, element of which has same columns. 
 #'
-#' @seealso \code{\link{ISCMEBObj-class}}
+#' @seealso \code{\link{iSCMEBObj-class}}
 #'
 #' @importFrom irlba irlba
 #'
 #' @examples
-#' data(ISCMEBObj_toy)
+#' data(iSCMEBObj_toy)
 #' library(Seurat)
-#' ## For convenience, we show the ISCMEBObj for perform dimension reduction. 
+#' ## For convenience, we show the iSCMEBObj for perform dimension reduction. 
 #' ## Users can use PCA method or WPCA.
-#' ISCMEBObj_toy2 <- runPCA(ISCMEBObj_toy)
-#' ## seulist <- ISCMEBObj_toy$seulist
+#' iSCMEBObj_toy2 <- runPCA(iSCMEBObj_toy)
+#' ## seulist <- iSCMEBObj_toy$seulist
 #' ## seulist <- runPCA(seulist)
 runPCA <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") UseMethod("runPCA")
 
-#' @return Returns a revised ISCMEBObj object when input a ISCMEBObj.
+#' @return Returns a revised iSCMEBObj object when input a iSCMEBObj.
 #' @rdname runPCA
-#' @method runPCA ISCMEBObj
+#' @method runPCA iSCMEBObj
 #' @export
-runPCA.ISCMEBObj <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") {
+runPCA.iSCMEBObj <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") {
     pca.method = match.arg(pca.method)
     obj@seulist <- runpca(obj@seulist, npcs=npcs, pca.method=pca.method, reduction.name=reduction.name)
     obj@parameterList$npcs = npcs
@@ -96,7 +96,7 @@ runpca_mat <- function(matlist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA")
     } else if (pca.method == "WPCA") {
         princ <- wpcaCpp(Xmat, npcs, TRUE)
     } else {
-        stop("CreateISCMEBObject: undefined PCA method.")
+        stop("CreateiSCMEBObject: undefined PCA method.")
     }
 
     VList <- mat2list(princ$PCs, nvec=sapply(matlist, nrow))
@@ -116,7 +116,7 @@ runpca <- function(seulist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), re
     } else if (pca.method == "WPCA") {
         princ <- wpcaCpp(Xmat, npcs, TRUE)
     } else {
-        stop("CreateISCMEBObject: undefined PCA method.")
+        stop("CreateiSCMEBObject: undefined PCA method.")
     }
 
     VList <- mat2list(princ$PCs, nvec=sapply(seulist, ncol))

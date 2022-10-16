@@ -2,7 +2,7 @@
 % Please edit documentation in R/CreateNeighbors.r
 \name{CreateNeighbors}
 \alias{CreateNeighbors}
-\alias{CreateNeighbors.ISCMEBObj}
+\alias{CreateNeighbors.iSCMEBObj}
 \alias{CreateNeighbors.list}
 \title{Calculate adjacency matrix form spatial coordinates.}
 \usage{
@@ -14,7 +14,7 @@ CreateNeighbors(
   radius.upper = 100
 )
 
-\method{CreateNeighbors}{ISCMEBObj}(
+\method{CreateNeighbors}{iSCMEBObj}(
   obj,
   platform = c("Other", "ST", "Visium"),
   lower.med = 4,
@@ -31,7 +31,7 @@ CreateNeighbors(
 )
 }
 \arguments{
-\item{obj}{A seuList or ISCMEBObj object or posList.}
+\item{obj}{A seuList or iSCMEBObj object or posList.}
 
 \item{platform}{A string, specify the platform of the provided data, default as "Other", and only support "ST" and "Visium" platform. When platform is specified as "Other", adjacency matrix will built based on L2 distance.}
 
@@ -42,7 +42,7 @@ CreateNeighbors(
 \item{radius.upper}{An option parameter determine the search radius upper bound of neighborhoods. Should be provided when platform is specified as "Other".}
 }
 \value{
-Returns a revised ISCMEBObj object.
+Returns a revised iSCMEBObj object.
 
 Returns a revised list.
 }
@@ -53,11 +53,11 @@ Calculate adjacency matrix form spatial coordinates.
 seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. posList is a list of position information, each element of which can be a data.frame or matrix. When the element of posList is data.frame, those data.frame should contain columns with names "row" and "col". When the element of posList is matrix, those matrices should be two column matrices.
 }
 \examples{
-data(ISCMEBObj_toy)
+data(iSCMEBObj_toy)
 library(Seurat)
-ISCMEBObj_toy2 <- CreateNeighbors(ISCMEBObj_toy, platform = "Visium")
-## ISCMEBObj_toy2 <- CreateNeighbors(ISCMEBObj_toy, radius.upper = 10)
+iSCMEBObj_toy2 <- CreateNeighbors(iSCMEBObj_toy, platform = "Visium")
+## iSCMEBObj_toy2 <- CreateNeighbors(iSCMEBObj_toy, radius.upper = 10)
 }
 \seealso{
-\code{\link{ISCMEBObj-class}}
+\code{\link{iSCMEBObj-class}}
 }

@@ -114,9 +114,9 @@ getAdj_reg <- function(pos, platform= "Visium"){
 
 #' Calculate adjacency matrix form spatial coordinates.
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
+#' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
-#' @param obj A seuList or ISCMEBObj object or posList. 
+#' @param obj A seuList or iSCMEBObj object or posList. 
 #' @param platform A string, specify the platform of the provided data, default as "Other", and only support "ST" and "Visium" platform. When platform is specified as "Other", adjacency matrix will built based on L2 distance. 
 #' @param lower.med An option parameter determine the lower bound of median of number of neighborhoods. Should be provided when platform is specified as "Other". 
 #' @param upper.med An option parameter determine the upper bound of median of number of neighborhoods. Should be provided when platform is specified as "Other". 
@@ -124,22 +124,22 @@ getAdj_reg <- function(pos, platform= "Visium"){
 #'
 #' @details seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. posList is a list of position information, each element of which can be a data.frame or matrix. When the element of posList is data.frame, those data.frame should contain columns with names "row" and "col". When the element of posList is matrix, those matrices should be two column matrices. 
 #'
-#' @seealso \code{\link{ISCMEBObj-class}}
+#' @seealso \code{\link{iSCMEBObj-class}}
 #'
 #' @importFrom stats median
 #'
 #' @examples
-#' data(ISCMEBObj_toy)
+#' data(iSCMEBObj_toy)
 #' library(Seurat)
-#' ISCMEBObj_toy2 <- CreateNeighbors(ISCMEBObj_toy, platform = "Visium")
-#' ## ISCMEBObj_toy2 <- CreateNeighbors(ISCMEBObj_toy, radius.upper = 10)
+#' iSCMEBObj_toy2 <- CreateNeighbors(iSCMEBObj_toy, platform = "Visium")
+#' ## iSCMEBObj_toy2 <- CreateNeighbors(iSCMEBObj_toy, radius.upper = 10)
 CreateNeighbors <- function(obj, platform=c("Other", "ST", "Visium"), lower.med=4, upper.med=6, radius.upper= 100) UseMethod("CreateNeighbors")
 
-#' @return Returns a revised ISCMEBObj object.
+#' @return Returns a revised iSCMEBObj object.
 #' @rdname CreateNeighbors
-#' @method CreateNeighbors ISCMEBObj
+#' @method CreateNeighbors iSCMEBObj
 #' @export
-CreateNeighbors.ISCMEBObj <- function(obj, platform=c("Other", "ST", "Visium"), lower.med=4, upper.med=6, radius.upper= 100) {
+CreateNeighbors.iSCMEBObj <- function(obj, platform=c("Other", "ST", "Visium"), lower.med=4, upper.med=6, radius.upper= 100) {
     posList <- lapply(obj@seulist, function(x) as.matrix(x@meta.data[,c("row", "col")]))
     platform = match.arg(platform)
     AdjList <- runneighbors(posList, platform=platform, lower.med=lower.med, upper.med=upper.med, radius.upper=radius.upper)
@@ -195,9 +195,9 @@ runneighbors <- function(posList, platform=c("Other", "ST", "Visium"), lower.med
 
 #' Set model parameters for ISCMEB method
 #'
-#' @useDynLib SC.MEB2, .registration = TRUE
+#' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
-#' @param SCMEBObj An ISCMEBObj object. 
+#' @param SCMEBObj An iSCMEBObj object. 
 #' @param beta_grid An optional vector of positive value, the candidate set of the smoothing parameter to be searched by the grid-search optimization approach, defualt as a sequence starts from 0, ends with 5, increase by 0.2. 
 #' @param maxIter_ICM An optional positive value, represents the maximum iterations of ICM (6 by default).
 #' @param maxIter An optional positive value, represents the maximum iterations of EM (25 by default).
@@ -213,11 +213,11 @@ runneighbors <- function(posList, platform=c("Other", "ST", "Visium"), lower.med
 #' @param c_penalty An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).
 #'
 #' @return Returns ISCMEB object. 
-#' @seealso \code{\link{ISCMEBObj-class}}
+#' @seealso \code{\link{iSCMEBObj-class}}
 #'
 #' @examples
-#' data(ISCMEBObj_toy)
-#' ISCMEBObj_toy <- SetModelParameters(ISCMEBObj_toy)
+#' data(iSCMEBObj_toy)
+#' iSCMEBObj_toy <- SetModelParameters(iSCMEBObj_toy)
 SetModelParameters <- function(SCMEBObj, beta_grid=seq(0, 5, by=0.2), maxIter_ICM=6, maxIter=25, 
     epsLogLik=1e-5, verbose=TRUE, int.model="EEE", init.start=1, 
     Sigma_equal = FALSE, Sigma_diag = TRUE, seed=1, coreNum=1, 

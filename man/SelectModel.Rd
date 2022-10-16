@@ -2,7 +2,7 @@
 % Please edit documentation in R/SelectModel.r
 \name{SelectModel}
 \alias{SelectModel}
-\alias{SelectModel.ISCMEBObj}
+\alias{SelectModel.iSCMEBObj}
 \alias{SelectModel.SCMEB_Result_Object}
 \title{Select best ISCMEB model from candidated models.}
 \usage{
@@ -13,7 +13,7 @@ SelectModel(
   K = NULL
 )
 
-\method{SelectModel}{ISCMEBObj}(
+\method{SelectModel}{iSCMEBObj}(
   obj,
   criteria = c("MBIC", "MAIC", "BIC", "AIC"),
   c_penalty = 1,
@@ -28,7 +28,7 @@ SelectModel(
 )
 }
 \arguments{
-\item{obj}{A ISCMEBObj object or SCMEB_Result_Object object.}
+\item{obj}{A iSCMEBObj object or SCMEB_Result_Object object.}
 
 \item{criteria}{A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).}
 
@@ -37,7 +37,7 @@ SelectModel(
 \item{K}{An optional number of cluster. When K is not null, the ISCMEB solution with K clusters will be selected, default is \code{NULL}.}
 }
 \value{
-Returns a revised ISCMEBObj object.
+Returns a revised iSCMEBObj object.
 
 Returns a revised list
 }
@@ -45,17 +45,17 @@ Returns a revised list
 Select best ISCMEB model from candidated models.
 }
 \details{
-SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function SC.MEB2, which is the main function of our package.
+SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
 }
 \examples{
-data(ISCMEBObj_toy)
+data(iSCMEBObj_toy)
 library(Seurat)
-## For convenience, we show the ISCMEBObj for perform dimension reduction. 
+## For convenience, we show the iSCMEBObj for perform dimension reduction. 
 ## Users can use PCA method or WPCA.
-ISCMEBObj_toy2 <- runPCA(ISCMEBObj_toy)
-## seulist <- ISCMEBObj_toy$seulist
+iSCMEBObj_toy2 <- runPCA(iSCMEBObj_toy)
+## seulist <- iSCMEBObj_toy$seulist
 ## seulist <- runPCA(seulist)
 }
 \seealso{
-\code{\link{ISCMEBObj-class}}, \code{\link{SC.MEB2}}
+\code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
 }

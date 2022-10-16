@@ -1,6 +1,6 @@
 [
     {
-        "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+        "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
         "file_last_write": 1665648001.0,
         "definitions": [
             {
@@ -8,7 +8,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "get_spNbs(arma::ivec, const arma::sp_mat &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 25,
                 "column": 8,
                 "hidden": false
@@ -18,7 +18,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "calYenergy2D_sp(const arma::ivec &, const arma::sp_mat &, int, const arma::vec, const double)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 55,
                 "column": 11,
                 "hidden": false
@@ -28,7 +28,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "obj_beta(const field<arma::ivec> &, const field<arma::mat> &, const arma::field<sp_mat> &, int, const arma::vec, const double)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 87,
                 "column": 8,
                 "hidden": false
@@ -38,7 +38,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "objr_beta(const arma::ivec &, const arma::mat &, const arma::sp_mat &, int, const arma::vec, const double)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 100,
                 "column": 8,
                 "hidden": false
@@ -48,7 +48,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "decomp(const arma::mat &, const arma::mat &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 111,
                 "column": 5,
                 "hidden": false
@@ -58,7 +58,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "multi_det_Sk_embedCpp(const arma::mat &, const arma::mat &, const arma::rowvec, double &, arma::vec &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 123,
                 "column": 6,
                 "hidden": false
@@ -68,7 +68,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "update_embed_Mu1(const arma::field<mat> &, const arma::field<cube> &, const arma::mat &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 151,
                 "column": 5,
                 "hidden": false
@@ -78,7 +78,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "update_embed_Sigma1(const field<arma::mat> &, const field<arma::cube> &, const field<arma::cube> &, const arma::mat &, const arma::mat &, const bool &, const bool &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 170,
                 "column": 6,
                 "hidden": false
@@ -88,7 +88,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "update_embed_Sigma2(const field<arma::mat> &, const field<arma::cube> &, const field<arma::cube> &, const arma::mat &, const arma::mat &, const bool &, const bool &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 215,
                 "column": 6,
                 "hidden": false
@@ -98,7 +98,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "update_embed_Lam1(const field<arma::mat> &, const field<arma::mat> &, const arma::mat &, const field<arma::cube> &, const field<arma::cube> &, const bool &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 252,
                 "column": 5,
                 "hidden": false
@@ -108,7 +108,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "update_embed_Psi(const field<arma::mat> &, const field<arma::mat> &, const field<arma::cube> &, const field<arma::cube> &, const arma::mat &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 279,
                 "column": 6,
                 "hidden": false
@@ -118,7 +118,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "update_embed_beta(const arma::field<ivec> &, const field<arma::mat> &, const field<arma::sp_mat> &, const arma::vec &, const arma::vec &, const bool &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 301,
                 "column": 5,
                 "hidden": false
@@ -128,7 +128,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "get_Vmean(const arma::mat &, const arma::sp_mat &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 327,
                 "column": 11,
                 "hidden": false
@@ -138,7 +138,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "runICM_sp_embed(const arma::field<mat> &, arma::field<ivec> &, arma::field<mat> &, const arma::mat &, const arma::mat &, const arma::cube &, arma::cube &, const arma::field<sp_mat> &, const arma::vec &, const arma::vec &, int, double &, field<arma::mat> &, field<arma::mat> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, field<arma::cube> &, const bool &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 420,
                 "column": 6,
                 "hidden": false
@@ -148,7 +148,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "SepSpatialClusterCpp_GivenK(const arma::field<arma::mat> &, const arma::field<arma::sp_mat> &, const arma::ivec &, const arma::mat &, const arma::cube &, const arma::cube &, const arma::vec &, const arma::vec &, const int &, const int &, const double &, const bool &, const bool &, const bool &, const bool &, const bool &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 550,
                 "column": 14,
                 "hidden": false
@@ -158,7 +158,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "SepSpatialClusterCpp(const Rcpp::List &, const Rcpp::List &, const Rcpp::List &, const Rcpp::List &, const Rcpp::List &, const arma::cube &, const double &, const arma::vec &, const int &, const int &, const double &, const bool &, const bool &, const bool &, const bool &, const bool &, const arma::uword &, const arma::uword &, const int &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 714,
                 "column": 12,
                 "hidden": false
@@ -168,7 +168,7 @@
                 "kind": 7,
                 "parent_name": "par_SCMEBTwo",
                 "name": "loop_by_K_SCMEBTwo(int)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 804,
                 "column": 20,
                 "hidden": false
@@ -178,7 +178,7 @@
                 "kind": 7,
                 "parent_name": "par_SCMEBTwo",
                 "name": "next_SCMEBTwo",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 820,
                 "column": 19,
                 "hidden": false
@@ -188,7 +188,7 @@
                 "kind": 7,
                 "parent_name": "par_SCMEBTwo",
                 "name": "update_by_thread_SCMEBTwo(int)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 829,
                 "column": 20,
                 "hidden": false
@@ -198,7 +198,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "getneighborhood_fast(const arma::mat, double)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 844,
                 "column": 15,
                 "hidden": false
@@ -208,7 +208,7 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "wpcaCpp(const arma::mat &, const int &, const bool &)",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.cpp",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
                 "line": 870,
                 "column": 12,
                 "hidden": false
@@ -217,7 +217,7 @@
         "hidden": false
     },
     {
-        "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.h",
+        "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.h",
         "file_last_write": 1662710307.0,
         "definitions": [
             {
@@ -225,7 +225,7 @@
                 "kind": 3,
                 "parent_name": "",
                 "name": "Obj_SCMEBTwo",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.h",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.h",
                 "line": 11,
                 "column": 8,
                 "hidden": false
@@ -235,7 +235,7 @@
                 "kind": 2,
                 "parent_name": "",
                 "name": "par_SCMEBTwo",
-                "file": "D:/DukeNUS/SCMEB2/Code/SC.MEB2/src/DR_removebatch.h",
+                "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.h",
                 "line": 43,
                 "column": 7,
                 "hidden": false
