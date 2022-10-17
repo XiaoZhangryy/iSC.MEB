@@ -41,7 +41,7 @@ This vignette introduces the iSC.MEB workflow for the analysis of two sliced spa
 
 We demonstrate the use of iSC.MEB to two human dorsolateral prefrontal cortex Visium data that are [here](https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data), which can be downloaded to the current working path by the following command:
 ```{r eval=TRUE}
-githubURL <- "https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data/DLPFC_151507_151508.rda?raw=true"
+githubURL <- "https://github.com/XiaoZhangryy/iSC.MEB/blob/main/vignettes_data/DLPFC_151507_151508.rda?raw=true"
 download.file(githubURL,"DLPFC_151507_151508.rda",mode='wb')
 ```
 
@@ -66,8 +66,7 @@ seuList ## a list including two Seurat object
 
 Create a iSCMEBObj object to prepare for iSC.MEB models.
 ```{r  eval = TRUE}
-library(iSC.MEB)
-preobj <- CreateiSCMEBObject(seuList = seuList)
+preobj <- CreateiSCMEBObject(seuList = seuList, verbose = FALSE)
 ```
 ### Add the model setting
 ```{r  eval = TRUE}
