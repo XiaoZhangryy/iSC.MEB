@@ -31,7 +31,7 @@ matlist2mat <- function (XList) {
     return(X0)
 }
 
-#' Run a PCA dimensionality reduction.
+#' Dimensionality reduction using PCA.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export

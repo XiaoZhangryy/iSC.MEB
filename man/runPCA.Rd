@@ -4,7 +4,7 @@
 \alias{runPCA}
 \alias{runPCA.iSCMEBObj}
 \alias{runPCA.list}
-\title{Run a PCA dimensionality reduction.}
+\title{Dimensionality reduction using PCA.}
 \usage{
 runPCA(
   obj,
@@ -42,7 +42,7 @@ Returns a revised iSCMEBObj object when input a iSCMEBObj.
 Returns a revised list when input a seuList or matrix list.
 }
 \description{
-Run a PCA dimensionality reduction.
+Dimensionality reduction using PCA.
 }
 \details{
 seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. matrix list is a list of log-transformed expression matrix, element of which has same columns.

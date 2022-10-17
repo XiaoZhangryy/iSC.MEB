@@ -40,39 +40,38 @@ This vignette introduces the iSC.MEB workflow for the analysis of two slice of `
 * Integrated clustering using iSC.MEB model
 
 We demonstrate the use of iSC.MEB to two human dorsolateral prefrontal cortex Visium data that are [here](https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data), which can be downloaded to the current working path by the following command:
-```{r eval=FALSE}
+```{r eval = TRUE}
 githubURL <- "https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data/seqFISH_embryo1.rda?raw=true"
 download.file(githubURL,"seqFISH_embryo1.rda",mode='wb')
-
 ```
-
-Then load to R 
-```{r  eval = FALSE}
-load("seqFISH_embryo1.rda")
-```
-
 
 The package can be loaded with the command:
-```{r  eval = FALSE}
+```{r  eval = TRUE}
 library(iSC.MEB)
 library(Seurat)
 ```
 
+Then load datasets to R 
+```{r  eval = TRUE}
+load("seqFISH_embryo1.rda")
+```
+
+
 ## Fit an iSC.MEB model
 First, we view the the spatial transcriptomics data with Visium platform.
-```{r  eval = FALSE}
+```{r  eval = TRUE}
 seuList ## a list including two Seurat object
 ```
 
 ### Prepare the iSC.MEB Object.
 
 Create a iSCMEBObj object to prepare for iSC.MEB models.
-```{r  eval = FALSE}
+```{r  eval = TRUE}
 library(iSC.MEB)
 preobj <- CreateiSCMEBObject(seuList = seuList)
 ```
 ### Add the model setting
-```{r  eval = FALSE}
+```{r  eval = TRUE}
 ## check the number of genes/features after filtering step
 preobj@seulist
 ## Add adjacency matrix list for a iSCMEBObj object to prepare for iSC.MEB model fitting.
@@ -87,13 +86,13 @@ iSCMEBObj <- SetModelParameters(iSCMEBObj, coreNum = 4, verbose = TRUE)
 
 ### Fit iSC.MEB 
 For function `iSCMEB`, users can specify the number of clusters $K$ or set `K` to be an integer vector by using modified MBIC(BIC) to determine $K$. Here, we use user-specified number of clusters. 
-```{r  eval = FALSE}
+```{r  eval = TRUE}
 ### Given K
 iSCMEBObj <- iSCMEB(iSCMEBObj, K = 15:25)
 ```
 
 The function `iSCMEB` will automatically choose the optimal path. User can slao using function `SelectModel` to select model.
-```{r  eval = FALSE}
+```{r  eval = TRUE}
 ## backup the fitting results in resList
 resList <- iSCMEBObj@resList
 iSCMEBObj <- SelectModel(iSCMEBObj)
@@ -108,6 +107,6 @@ print(ari_all)
 ```
 
 ## Session information
-```{r  eval = FALSE}
+```{r  eval = TRUE}
 sessionInfo()
 ```

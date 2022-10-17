@@ -1,5 +1,8 @@
-url: ~
+url: https://github.com/XiaoZhangryy/iSC.MEB
 template:
   bootstrap: 5
 development:
   mode: auto
+deploy:
+  install_metadata: true
+  
