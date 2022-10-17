@@ -21,6 +21,14 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/iSC.MEB.DLPFC.html">iSC.MEB: DLPFC Data Analysis</a>
+    <a class="dropdown-item" href="../articles/iSC.MEB.html">iSC.MEB: installation</a>
+    <a class="dropdown-item" href="../articles/iSC.MEB.seqFISH.html">iSC.MEB: seqFISH Data Analysis</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -111,14 +119,7 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">iSCMEBObj_toy</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat" class="external-link">Seurat</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co">## For convenience, we show the iSCMEBObj for perform dimension reduction. </span></span></span>
-<span class="r-in"><span><span class="co">## Users can use PCA method or WPCA.</span></span></span>
-<span class="r-in"><span><span class="va">iSCMEBObj_toy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="runPCA.html">runPCA</a></span><span class="op">(</span><span class="va">iSCMEBObj_toy</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>No assay specified, setting assay as RNA by default.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>No assay specified, setting assay as RNA by default.</span>
-<span class="r-in"><span><span class="co">## seulist &lt;- iSCMEBObj_toy$seulist</span></span></span>
-<span class="r-in"><span><span class="co">## seulist &lt;- runPCA(seulist)</span></span></span>
+<span class="r-in"><span><span class="va">iSCMEBObj_toy</span> <span class="op">&lt;-</span> <span class="fu">SelectModel</span><span class="op">(</span><span class="va">iSCMEBObj_toy</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

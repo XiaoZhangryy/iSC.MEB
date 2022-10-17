@@ -197,7 +197,7 @@ runneighbors <- function(posList, platform=c("Other", "ST", "Visium"), lower.med
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
-#' @param SCMEBObj An iSCMEBObj object. 
+#' @param obj An iSCMEBObj object. 
 #' @param beta_grid An optional vector of positive value, the candidate set of the smoothing parameter to be searched by the grid-search optimization approach, defualt as a sequence starts from 0, ends with 5, increase by 0.2. 
 #' @param maxIter_ICM An optional positive value, represents the maximum iterations of ICM (6 by default).
 #' @param maxIter An optional positive value, represents the maximum iterations of EM (25 by default).
@@ -218,7 +218,8 @@ runneighbors <- function(posList, platform=c("Other", "ST", "Visium"), lower.med
 #' @examples
 #' data(iSCMEBObj_toy)
 #' iSCMEBObj_toy <- SetModelParameters(iSCMEBObj_toy)
-SetModelParameters <- function(SCMEBObj, beta_grid=seq(0, 5, by=0.2), maxIter_ICM=6, maxIter=25, 
+#' iSCMEBObj_toy@parameterList
+SetModelParameters <- function(obj, beta_grid=seq(0, 5, by=0.2), maxIter_ICM=6, maxIter=25, 
     epsLogLik=1e-5, verbose=TRUE, int.model="EEE", init.start=1, 
     Sigma_equal = FALSE, Sigma_diag = TRUE, seed=1, coreNum=1, 
     criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty=1) {
@@ -237,6 +238,6 @@ SetModelParameters <- function(SCMEBObj, beta_grid=seq(0, 5, by=0.2), maxIter_IC
         coreNum=coreNum,
         criteria=criteria,
         c_penalty=c_penalty)
-    SCMEBObj@parameterList <- c(SCMEBObj@parameterList, para_settings)
-    SCMEBObj
+    obj@parameterList <- c(obj@parameterList, para_settings)
+    obj
 }

@@ -218,7 +218,7 @@ degree.freedom <- function(K, q, nT, Sigma_equal, Sigma_diag, Sp_embed) {
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
 #' @param iSCMEBObj A iSCMEBObj object. 
-#' @param K An optional integer or integer vector, specify the candidates of number of clusters. if \code{K=NULL}, it will be set to 4~12.
+#' @param K An optional integer or integer vector, specify the candidates of number of clusters. if \code{K=NULL}, it will be set to 5~12.
 #'
 #' @details The model results are saved in the slot of resList.
 #'
@@ -236,7 +236,7 @@ iSCMEB <- function(iSCMEBObj, K=NULL){
     if(!inherits(iSCMEBObj, "iSCMEBObj")) 
         stop("ISCMEB: Check the argument: iSCMEBObj! iSCMEBObj must be a iSCMEBObj object.")
     
-    if(is.null(K)) K <- 4:12
+    if(is.null(K)) K <- 5:12
     if(is.null(iSCMEBObj@seulist)) stop("The slot seulist in iSCMEBObj is NULL!")
     
     ## Get pcs

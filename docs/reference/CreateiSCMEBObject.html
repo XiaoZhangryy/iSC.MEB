@@ -21,6 +21,14 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/iSC.MEB.DLPFC.html">iSC.MEB: DLPFC Data Analysis</a>
+    <a class="dropdown-item" href="../articles/iSC.MEB.html">iSC.MEB: installation</a>
+    <a class="dropdown-item" href="../articles/iSC.MEB.seqFISH.html">iSC.MEB: seqFISH Data Analysis</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -142,8 +150,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RNA" "RNA"</span>
 <span class="r-in"><span><span class="co">## Check the spatial coordinates in the meta data named "row" and "col".</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">seuList</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "orig.ident"   "nCount_RNA"   "nFeature_RNA" "Cluster"      "row"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "col"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "orig.ident"            "nCount_RNA"            "nFeature_RNA"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "layer_guess_reordered" "row"                   "col"                  </span>
 <span class="r-in"><span><span class="co">## Then create ISCMEB object using this seuList. </span></span></span>
 <span class="r-in"><span><span class="co">## For convenience, we show the  user-specified genes' list for creating ISCMEB object. </span></span></span>
 <span class="r-in"><span><span class="co">## Users can use SVGs from SPARK-X or HVGs.</span></span></span>

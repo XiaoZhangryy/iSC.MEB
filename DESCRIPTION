@@ -22,6 +22,7 @@ Depends: gtools, R (>= 4.0.0)
 Imports: Rcpp (>= 1.0.8.3), mclust, irlba, stats, parallel, pbapply, purrr, Matrix, DR.SC, methods, Seurat, dplyr
 LinkingTo: Rcpp, RcppArmadillo
 LazyData: true
+LazyDataCompression:xz
 URL: https://github.com/XiaoZhangryy/iSC-MEB
 BugReports: https://github.com/XiaoZhangryy/iSC-MEB/issues
 NeedsCompilation: yes

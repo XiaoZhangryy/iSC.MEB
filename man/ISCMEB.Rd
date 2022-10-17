@@ -9,7 +9,7 @@ iSCMEB(iSCMEBObj, K = NULL)
 \arguments{
 \item{iSCMEBObj}{A iSCMEBObj object.}
 
-\item{K}{An optional integer or integer vector, specify the candidates of number of clusters. if \code{K=NULL}, it will be set to 4~12.}
+\item{K}{An optional integer or integer vector, specify the candidates of number of clusters. if \code{K=NULL}, it will be set to 5~12.}
 }
 \value{
 Returns a revised iSCMEBObj object.

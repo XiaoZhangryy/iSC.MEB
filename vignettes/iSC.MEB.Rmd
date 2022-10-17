@@ -1,0 +1,34 @@
+---
+title: "iSC.MEB: installation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{iSC.MEB: installation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Install the iSC.MEB
+This vignette provides an introduction to the R package `iSC.MEB`, where the function `iSC.MEB` implements the model `iSCMEB`, a integrate spatial clustering analysis method with hidden Markov random field using empirical Bayes.
+The package can be installed with the following command from [Github](https://github.com/XiaoZhangryy/iSC.MEB):
+
+`install.packages('devtools')`
+`devtools::install_github("XiaoZhangryy/iSC.MEB")`
+
+The package can be loaded with the command:
+```{r  eval=TRUE}
+library("iSC.MEB")
+```
+
+
+## Setup on Linux or MacOS system
+For running big data, users can use the following system command to set the C_stack unlimited in case of `R Error: C stack usage is too close to the limit`.
+```{Linux}
+ulimit -s unlimited
+```

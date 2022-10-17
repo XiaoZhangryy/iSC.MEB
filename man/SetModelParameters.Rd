@@ -5,7 +5,7 @@
 \title{Set model parameters for ISCMEB method}
 \usage{
 SetModelParameters(
-  SCMEBObj,
+  obj,
   beta_grid = seq(0, 5, by = 0.2),
   maxIter_ICM = 6,
   maxIter = 25,
@@ -22,7 +22,7 @@ SetModelParameters(
 )
 }
 \arguments{
-\item{SCMEBObj}{An iSCMEBObj object.}
+\item{obj}{An iSCMEBObj object.}
 
 \item{beta_grid}{An optional vector of positive value, the candidate set of the smoothing parameter to be searched by the grid-search optimization approach, defualt as a sequence starts from 0, ends with 5, increase by 0.2.}
 
@@ -59,6 +59,7 @@ Set model parameters for ISCMEB method
 \examples{
 data(iSCMEBObj_toy)
 iSCMEBObj_toy <- SetModelParameters(iSCMEBObj_toy)
+iSCMEBObj_toy@parameterList
 }
 \seealso{
 \code{\link{iSCMEBObj-class}}

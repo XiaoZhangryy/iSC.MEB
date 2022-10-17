@@ -21,6 +21,14 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/iSC.MEB.DLPFC.html">iSC.MEB: DLPFC Data Analysis</a>
+    <a class="dropdown-item" href="../articles/iSC.MEB.html">iSC.MEB: installation</a>
+    <a class="dropdown-item" href="../articles/iSC.MEB.seqFISH.html">iSC.MEB: seqFISH Data Analysis</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -154,22 +162,22 @@
 <span class="r-in"><span><span class="va">posList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">iSCMEBObj_toy</span><span class="op">@</span><span class="va">seulist</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">@</span><span class="va">meta.data</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"row"</span>, <span class="st">"col"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">AdjList</span> <span class="op">&lt;-</span> <span class="fu"><a href="CreateNeighbors.html">CreateNeighbors</a></span><span class="op">(</span><span class="va">posList</span>, platform <span class="op">=</span> <span class="st">"Visium"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Neighbors were identified for 4222 out of 4222 spots.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Neighbors were identified for 4379 out of 4382 spots.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Neighbors were identified for 4378 out of 4381 spots.</span>
 <span class="r-in"><span><span class="va">resList</span> <span class="op">&lt;-</span> <span class="fu">fit.iscmeb</span><span class="op">(</span><span class="va">VList</span>, <span class="va">AdjList</span>, K<span class="op">=</span><span class="fl">7</span>, maxIter<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Evaluate initial values...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> fitting ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fit SC-MEB2...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Finish variable initialization </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 2, loglik= -153054.053968, dloglik=0.999929 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 3, loglik= -146570.616969, dloglik=0.042360 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 4, loglik= -143065.128651, dloglik=0.023917 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 5, loglik= -140528.392351, dloglik=0.017731 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 6, loglik= -138696.811114, dloglik=0.013034 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 7, loglik= -137419.984422, dloglik=0.009206 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 8, loglik= -136515.200096, dloglik=0.006584 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 9, loglik= -135863.816318, dloglik=0.004772 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 10, loglik= -135385.232769, dloglik=0.003523 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 2, loglik= -148583.924112, dloglik=0.999931 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 3, loglik= -142378.593319, dloglik=0.041763 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 4, loglik= -138932.559873, dloglik=0.024203 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 5, loglik= -135452.994625, dloglik=0.025045 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 6, loglik= -133626.290687, dloglik=0.013486 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 7, loglik= -132565.279798, dloglik=0.007940 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 8, loglik= -131780.626891, dloglik=0.005919 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 9, loglik= -131009.202464, dloglik=0.005854 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K = 7, iter = 10, loglik= -130602.705279, dloglik=0.003103 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

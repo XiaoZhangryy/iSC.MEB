@@ -13,12 +13,7 @@
 #'
 #' @examples
 #' data(iSCMEBObj_toy)
-#' library(Seurat)
-#' ## For convenience, we show the iSCMEBObj for perform dimension reduction. 
-#' ## Users can use PCA method or WPCA.
-#' iSCMEBObj_toy2 <- runPCA(iSCMEBObj_toy)
-#' ## seulist <- iSCMEBObj_toy$seulist
-#' ## seulist <- runPCA(seulist)
+#' iSCMEBObj_toy <- SelectModel(iSCMEBObj_toy)
 SelectModel <- function(obj, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty = 1, K = NULL) UseMethod("SelectModel")
 
 #' @return Returns a revised iSCMEBObj object.
@@ -75,4 +70,66 @@ selectmodel <- function(resList, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_pen
     }
     
     return(resList)
+}
+
+#' Get the identity of iSC.MEB
+#'
+#' @useDynLib iSC.MEB, .registration = TRUE
+#' @export
+#' @param obj An iSCMEBObj object or SCMEB_Result_Object object. 
+#'
+#' @details SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' 
+#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
+#'
+#' @examples
+#' data(iSCMEBObj_toy)
+#' IdentsList <- idents(iSCMEBObj_toy)
+idents <- function(obj) UseMethod("idents")
+
+#' @return Returns a list of identity, whose i-th element is the identity of i-th tissue section.
+#' @rdname idents
+#' @method idents iSCMEBObj
+#' @export
+idents.iSCMEBObj <- function(obj) {
+    obj@resList$optSolution$cluster
+}
+
+#' @return Returns a list of identity, whose i-th element is the identity of i-th tissue section.
+#' @rdname idents
+#' @method idents SCMEB_Result_Object
+#' @export
+idents.SCMEB_Result_Object <- function(obj) {
+    obj$optSolution$cluster
+}
+
+#' Get the identity of iSC.MEB
+#'
+#' @useDynLib iSC.MEB, .registration = TRUE
+#' @export
+#' @param obj An iSCMEBObj object or SCMEB_Result_Object object. 
+#'
+#' @details SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' 
+#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
+#'
+#' @examples
+#' data(iSCMEBObj_toy)
+#' EmbeddingsList <- embeddings(iSCMEBObj_toy)
+embeddings <- function(obj) UseMethod("embeddings")
+
+#' @return Returns a list of embedding, whose i-th element is the embedding of i-th tissue section.
+#' @rdname embeddings
+#' @method embeddings iSCMEBObj
+#' @export
+embeddings.iSCMEBObj <- function(obj) {
+    obj@resList$optSolution$hZ
+}
+
+#' @return Returns a list of embedding, whose i-th element is the embedding of i-th tissue section.
+#' @rdname embeddings
+#' @method embeddings iSCSCMEB_Result_ObjectMEBObj
+#' @export
+embeddings.iSCSCMEB_Result_ObjectMEBObj <- function(obj) {
+    obj$optSolution$hZ
 }

@@ -49,12 +49,7 @@ SCMEB_Result_Object is an object that contains all ISCMEB solution information. 
 }
 \examples{
 data(iSCMEBObj_toy)
-library(Seurat)
-## For convenience, we show the iSCMEBObj for perform dimension reduction. 
-## Users can use PCA method or WPCA.
-iSCMEBObj_toy2 <- runPCA(iSCMEBObj_toy)
-## seulist <- iSCMEBObj_toy$seulist
-## seulist <- runPCA(seulist)
+iSCMEBObj_toy <- SelectModel(iSCMEBObj_toy)
 }
 \seealso{
 \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
