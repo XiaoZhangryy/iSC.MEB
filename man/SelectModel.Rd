@@ -4,7 +4,7 @@
 \alias{SelectModel}
 \alias{SelectModel.iSCMEBObj}
 \alias{SelectModel.SCMEB_Result_Object}
-\title{Select best ISCMEB model from candidated models.}
+\title{Select best iSC.MEB model from candidated models.}
 \usage{
 SelectModel(
   obj,
@@ -34,7 +34,7 @@ SelectModel(
 
 \item{c_penalty}{An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).}
 
-\item{K}{An optional number of cluster. When K is not null, the ISCMEB solution with K clusters will be selected, default is \code{NULL}.}
+\item{K}{An optional number of cluster. When K is not null, the iSC.MEB solution with K clusters will be selected, default is \code{NULL}.}
 }
 \value{
 Returns a revised iSCMEBObj object.
@@ -42,10 +42,10 @@ Returns a revised iSCMEBObj object.
 Returns a revised list
 }
 \description{
-Select best ISCMEB model from candidated models.
+Select best iSC.MEB model from candidated models.
 }
 \details{
-SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
+SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
 }
 \examples{
 data(iSCMEBObj_toy)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.R
 \name{iSCMEB}
 \alias{iSCMEB}
-\title{Fit a ISCMEB model.}
+\title{Fit a iSC.MEB model.}
 \usage{
 iSCMEB(iSCMEBObj, K = NULL)
 }
@@ -15,7 +15,7 @@ iSCMEB(iSCMEBObj, K = NULL)
 Returns a revised iSCMEBObj object.
 }
 \description{
-Fit a ISCMEB model.
+Fit a iSC.MEB model.
 }
 \details{
 The model results are saved in the slot of resList.

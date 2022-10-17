@@ -24,7 +24,7 @@ Returns a list of embedding, whose i-th element is the embedding of i-th tissue 
 Get the identity of iSC.MEB
 }
 \details{
-SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
+SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
 }
 \examples{
 data(iSCMEBObj_toy)

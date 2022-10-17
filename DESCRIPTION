@@ -3,7 +3,7 @@ Type: Package
 Title: Integrated spatial clustering with hidden Markov random field using empirical Bayes
 Version: 1.0
 Date: 2022-10-13
-Author@R:
+Authors@R: 
     c(person(given = "Xiao",
              family = "Zhang",
              role = c("aut", "cre"),
@@ -23,8 +23,8 @@ Imports: Rcpp (>= 1.0.8.3), mclust, irlba, stats, parallel, pbapply, purrr, Matr
 LinkingTo: Rcpp, RcppArmadillo
 LazyData: true
 LazyDataCompression:xz
-URL: https://github.com/XiaoZhangryy/iSC-MEB
-BugReports: https://github.com/XiaoZhangryy/iSC-MEB/issues
+URL: https://github.com/XiaoZhangryy/iSC.MEB
+BugReports: https://github.com/XiaoZhangryy/iSC.MEB/issues
 NeedsCompilation: yes
 RoxygenNote: 7.1.2
 Encoding: UTF-8

@@ -89,10 +89,10 @@ selectIntFeatures <- function(seulist, spaFeatureList, IntFeatures=2000){
 #' @description Each iSCMEBObj object has a number of slots which store information. Key slots to access are listed below.
 #' \itemize{
 #'   \item \code{seuList} - A list with Seurat object as component, representing the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information is saved in the metadata of Seurat, named "row" and "col" for eahc data batch.
-#'   \item \code{seulist} - A Seurat list after the preprocessing step in preparation for ISCMEB model.
+#'   \item \code{seulist} - A Seurat list after the preprocessing step in preparation for iSC.MEB model.
 #'   \item \code{AdjList} - The adjacency matrix list for a iSCMEBObj object.
 #'   \item \code{parameterList} - The model parameter settings for a iSCMEBObj object.
-#'   \item \code{resList} - The results after fitting ISCMEB models.
+#'   \item \code{resList} - The results after fitting iSC.MEB models.
 #'   \item \code{project} - Name of the project.
 #' }
 setClass("iSCMEBObj", slots=list(
@@ -104,12 +104,12 @@ setClass("iSCMEBObj", slots=list(
   project = "character"
 ) )
 
-#' Create the ISCMEB object with preprocessing step.
+#' Create the iSC.MEB object with preprocessing step.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
 #' @param seuList A list consisting of Seurat objects, where each object is a SRT data batch. The default assay of each Seurat object will be used for data preprocessing and followed model fitting. The specified format about seuList argument can be referred to the details and example. 
-#' @param project An optional string, name of the project, default as "ISCMEB".
+#' @param project An optional string, name of the project, default as "iSC.MEB".
 #' @param gene.number An optional integer, the number of top spatially variable genes (SVGs) or highly variable  genes (HVGs) to be chosen.
 #' @param selectGenesMethod An optional integer, the method to select genes for each sample. It supports 'SPARK-X' and 'HVGs' to select genes now. Users can provide self-selected genes using customGenelist argument.
 #' @param numCores_sparkx An optional integer, specify the number of CPU cores in SPARK package to use when selecting spatial genes.
@@ -123,7 +123,7 @@ setClass("iSCMEBObj", slots=list(
 #'
 #' @details seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch.
 #'
-#' @return Returns ISCMEB object prepared for ISCMEB model fitting.
+#' @return Returns iSC.MEB object prepared for iSC.MEB model fitting.
 #' @seealso \code{\link{iSCMEBObj-class}}
 #'
 #' @importFrom pbapply pbapply
@@ -136,17 +136,17 @@ setClass("iSCMEBObj", slots=list(
 #' data(iSCMEBObj_toy)
 #' library(Seurat)
 #' seuList <- iSCMEBObj_toy@seulist
-#' ## Check the input of seuList for create ISCMEB object.
+#' ## Check the input of seuList for create iSC.MEB object.
 #' ## Check the default assay for each data batch
 #' sapply(seuList, DefaultAssay)
 #' ## Check the spatial coordinates in the meta data named "row" and "col".
 #' colnames(seuList[[1]]@meta.data)
-#' ## Then create ISCMEB object using this seuList. 
-#' ## For convenience, we show the  user-specified genes' list for creating ISCMEB object. 
+#' ## Then create iSC.MEB object using this seuList. 
+#' ## For convenience, we show the  user-specified genes' list for creating iSC.MEB object. 
 #' ## Users can use SVGs from SPARK-X or HVGs.
 #' Genelist <- row.names(seuList[[1]])
 #' iSCMEBObj_toy2 <- CreateiSCMEBObject(seuList, customGenelist=Genelist, verbose=FALSE)
-CreateiSCMEBObject <- function(seuList, project = "ISCMEB", gene.number=2000, 
+CreateiSCMEBObject <- function(seuList, project = "iSC.MEB", gene.number=2000, 
     selectGenesMethod='SPARK-X', numCores_sparkx=1, customGenelist=NULL, 
     premin.spots = 20, premin.features=20, postmin.spots=15, postmin.features=15,
     rawData.preserve=FALSE, verbose=TRUE ){

@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.R
 \name{fit.iscmeb}
 \alias{fit.iscmeb}
-\title{Fit a ISCMEB model.}
+\title{Fit a iSC.MEB model.}
 \usage{
 fit.iscmeb(
   VList,
@@ -40,7 +40,7 @@ fit.iscmeb(
 
 \item{verbose}{An optional logical value, whether output the information of the ICM-EM algorithm.}
 
-\item{int.model}{An optional string, specify which Gaussian mixture model is used in evaluting the initial values for ISCMEB, default as "EEE"; and see \code{Mclust} for more models' names.}
+\item{int.model}{An optional string, specify which Gaussian mixture model is used in evaluting the initial values for iSC.MEB, default as "EEE"; and see \code{Mclust} for more models' names.}
 
 \item{init.start}{An optional number of times to calculate the initial value (1 by default). When init.start is larger than 1, initial value will be determined by log likelihood of mclust results.}
 
@@ -48,7 +48,7 @@ fit.iscmeb(
 
 \item{Sigma_diag}{An optional logical value, specify whether Sigmaks are diagonal matrices, default as \code{TRUE}.}
 
-\item{seed}{An optional integer, the random seed in fitting ISCMEB model.}
+\item{seed}{An optional integer, the random seed in fitting iSC.MEB model.}
 
 \item{coreNum}{An optional positive integer, means the number of thread used in parallel computating (1 by default).}
 
@@ -60,7 +60,7 @@ fit.iscmeb(
 Returns a SCMEB_Result_Object object which contains all model results.
 }
 \description{
-Fit a ISCMEB model.
+Fit a iSC.MEB model.
 }
 \examples{
 data(iSCMEBObj_toy)

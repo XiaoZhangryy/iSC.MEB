@@ -69,7 +69,7 @@ get_initial_value4seqK <- function(
     return(list(y0k = y0k, Mu0k=Mu0k, Sigma0k=Sigma0k, Pi0k=Pi0k))
 }
 
-#' Fit a ISCMEB model.
+#' Fit a iSC.MEB model.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
@@ -82,10 +82,10 @@ get_initial_value4seqK <- function(
 #' @param epsLogLik An optional positive vlaue, tolerance vlaue of relative variation rate of the observed pseudo log-loglikelihood value, defualt as '1e-5'.
 #' @param verbose An optional logical value, whether output the information of the ICM-EM algorithm.
 #' @param init.start An optional number of times to calculate the initial value (1 by default). When init.start is larger than 1, initial value will be determined by log likelihood of mclust results. 
-#' @param int.model An optional string, specify which Gaussian mixture model is used in evaluting the initial values for ISCMEB, default as "EEE"; and see \code{Mclust} for more models' names.
+#' @param int.model An optional string, specify which Gaussian mixture model is used in evaluting the initial values for iSC.MEB, default as "EEE"; and see \code{Mclust} for more models' names.
 #' @param Sigma_equal An optional logical value, specify whether Sigmaks are equal, default as \code{FALSE}.
 #' @param Sigma_diag An optional logical value, specify whether Sigmaks are diagonal matrices, default as \code{TRUE}.
-#' @param seed An optional integer, the random seed in fitting ISCMEB model.
+#' @param seed An optional integer, the random seed in fitting iSC.MEB model.
 #' @param coreNum An optional positive integer, means the number of thread used in parallel computating (1 by default).
 #' @param criteria A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).
 #' @param c_penalty An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).
@@ -213,7 +213,7 @@ degree.freedom <- function(K, q, nT, Sigma_equal, Sigma_diag, Sp_embed) {
     return(dfree)
 }
 
-#' Fit a ISCMEB model.
+#' Fit a iSC.MEB model.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
@@ -234,7 +234,7 @@ degree.freedom <- function(K, q, nT, Sigma_equal, Sigma_diag, Sp_embed) {
 #' iSCMEBObj_toy <- iSCMEB(iSCMEBObj_toy, K = 7)
 iSCMEB <- function(iSCMEBObj, K=NULL){
     if(!inherits(iSCMEBObj, "iSCMEBObj")) 
-        stop("ISCMEB: Check the argument: iSCMEBObj! iSCMEBObj must be a iSCMEBObj object.")
+        stop("iSCMEB: Check the argument: iSCMEBObj! iSCMEBObj must be a iSCMEBObj object.")
     
     if(is.null(K)) K <- 5:12
     if(is.null(iSCMEBObj@seulist)) stop("The slot seulist in iSCMEBObj is NULL!")

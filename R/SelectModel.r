@@ -1,13 +1,13 @@
-#' Select best ISCMEB model from candidated models. 
+#' Select best iSC.MEB model from candidated models. 
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
 #' @param obj A iSCMEBObj object or SCMEB_Result_Object object. 
 #' @param criteria A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).
 #' @param c_penalty An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).
-#' @param K An optional number of cluster. When K is not null, the ISCMEB solution with K clusters will be selected, default is \code{NULL}. 
+#' @param K An optional number of cluster. When K is not null, the iSC.MEB solution with K clusters will be selected, default is \code{NULL}. 
 #'
-#' @details SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' @details SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
 #' 
 #' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
 #'
@@ -78,7 +78,7 @@ selectmodel <- function(resList, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_pen
 #' @export
 #' @param obj An iSCMEBObj object or SCMEB_Result_Object object. 
 #'
-#' @details SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' @details SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
 #' 
 #' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
 #'
@@ -109,7 +109,7 @@ idents.SCMEB_Result_Object <- function(obj) {
 #' @export
 #' @param obj An iSCMEBObj object or SCMEB_Result_Object object. 
 #'
-#' @details SCMEB_Result_Object is an object that contains all ISCMEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' @details SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
 #' 
 #' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
 #'

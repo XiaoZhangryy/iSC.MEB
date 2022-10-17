@@ -2,11 +2,11 @@
 % Please edit documentation in R/CreateClass.r
 \name{CreateiSCMEBObject}
 \alias{CreateiSCMEBObject}
-\title{Create the ISCMEB object with preprocessing step.}
+\title{Create the iSC.MEB object with preprocessing step.}
 \usage{
 CreateiSCMEBObject(
   seuList,
-  project = "ISCMEB",
+  project = "iSC.MEB",
   gene.number = 2000,
   selectGenesMethod = "SPARK-X",
   numCores_sparkx = 1,
@@ -22,7 +22,7 @@ CreateiSCMEBObject(
 \arguments{
 \item{seuList}{A list consisting of Seurat objects, where each object is a SRT data batch. The default assay of each Seurat object will be used for data preprocessing and followed model fitting. The specified format about seuList argument can be referred to the details and example.}
 
-\item{project}{An optional string, name of the project, default as "ISCMEB".}
+\item{project}{An optional string, name of the project, default as "iSC.MEB".}
 
 \item{gene.number}{An optional integer, the number of top spatially variable genes (SVGs) or highly variable  genes (HVGs) to be chosen.}
 
@@ -45,10 +45,10 @@ CreateiSCMEBObject(
 \item{verbose}{An indictor of whether display the message in the creating process.}
 }
 \value{
-Returns ISCMEB object prepared for ISCMEB model fitting.
+Returns iSC.MEB object prepared for iSC.MEB model fitting.
 }
 \description{
-Create the ISCMEB object with preprocessing step.
+Create the iSC.MEB object with preprocessing step.
 }
 \details{
 seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch.
@@ -57,13 +57,13 @@ seuList is a \link{list} with Seurat object as component, and each Seurat object
 data(iSCMEBObj_toy)
 library(Seurat)
 seuList <- iSCMEBObj_toy@seulist
-## Check the input of seuList for create ISCMEB object.
+## Check the input of seuList for create iSC.MEB object.
 ## Check the default assay for each data batch
 sapply(seuList, DefaultAssay)
 ## Check the spatial coordinates in the meta data named "row" and "col".
 colnames(seuList[[1]]@meta.data)
-## Then create ISCMEB object using this seuList. 
-## For convenience, we show the  user-specified genes' list for creating ISCMEB object. 
+## Then create iSC.MEB object using this seuList. 
+## For convenience, we show the  user-specified genes' list for creating iSC.MEB object. 
 ## Users can use SVGs from SPARK-X or HVGs.
 Genelist <- row.names(seuList[[1]])
 iSCMEBObj_toy2 <- CreateiSCMEBObject(seuList, customGenelist=Genelist, verbose=FALSE)

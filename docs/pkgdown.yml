@@ -2,8 +2,8 @@ pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
+  iSC-MEB: iSC-MEB.html
   iSC.MEB.DLPFC: iSC.MEB.DLPFC.html
-  iSC.MEB: iSC.MEB.html
   iSC.MEB.seqFISH: iSC.MEB.seqFISH.html
-last_built: 2022-10-17T06:37Z
+last_built: 2022-10-17T07:17Z
 

@@ -193,7 +193,7 @@ runneighbors <- function(posList, platform=c("Other", "ST", "Visium"), lower.med
     AdjList
 }
 
-#' Set model parameters for ISCMEB method
+#' Set model parameters for iSC.MEB method
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
 #' @export
@@ -204,15 +204,15 @@ runneighbors <- function(posList, platform=c("Other", "ST", "Visium"), lower.med
 #' @param epsLogLik An optional positive vlaue, tolerance vlaue of relative variation rate of the observed pseudo log-loglikelihood value, defualt as '1e-5'.
 #' @param verbose An optional logical value, whether output the information of the ICM-EM algorithm.
 #' @param init.start An optional number of times to calculate the initial value (1 by default). When init.start is larger than 1, initial value will be determined by log likelihood of mclust results. 
-#' @param int.model An optional string, specify which Gaussian mixture model is used in evaluting the initial values for ISCMEB, default as "EEE"; and see \code{Mclust} for more models' names.
+#' @param int.model An optional string, specify which Gaussian mixture model is used in evaluting the initial values for iSC.MEB, default as "EEE"; and see \code{Mclust} for more models' names.
 #' @param Sigma_equal An optional logical value, specify whether Sigmaks are equal, default as \code{FALSE}.
 #' @param Sigma_diag An optional logical value, specify whether Sigmaks are diagonal matrices, default as \code{TRUE}.
-#' @param seed An optional integer, the random seed in fitting ISCMEB model.
+#' @param seed An optional integer, the random seed in fitting iSC.MEB model.
 #' @param coreNum An optional positive integer, means the number of thread used in parallel computating (1 by default).
 #' @param criteria A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).
 #' @param c_penalty An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).
 #'
-#' @return Returns ISCMEB object. 
+#' @return Returns iSC.MEB object. 
 #' @seealso \code{\link{iSCMEBObj-class}}
 #'
 #' @examples

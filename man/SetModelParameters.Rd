@@ -2,7 +2,7 @@
 % Please edit documentation in R/CreateNeighbors.r
 \name{SetModelParameters}
 \alias{SetModelParameters}
-\title{Set model parameters for ISCMEB method}
+\title{Set model parameters for iSC.MEB method}
 \usage{
 SetModelParameters(
   obj,
@@ -34,7 +34,7 @@ SetModelParameters(
 
 \item{verbose}{An optional logical value, whether output the information of the ICM-EM algorithm.}
 
-\item{int.model}{An optional string, specify which Gaussian mixture model is used in evaluting the initial values for ISCMEB, default as "EEE"; and see \code{Mclust} for more models' names.}
+\item{int.model}{An optional string, specify which Gaussian mixture model is used in evaluting the initial values for iSC.MEB, default as "EEE"; and see \code{Mclust} for more models' names.}
 
 \item{init.start}{An optional number of times to calculate the initial value (1 by default). When init.start is larger than 1, initial value will be determined by log likelihood of mclust results.}
 
@@ -42,7 +42,7 @@ SetModelParameters(
 
 \item{Sigma_diag}{An optional logical value, specify whether Sigmaks are diagonal matrices, default as \code{TRUE}.}
 
-\item{seed}{An optional integer, the random seed in fitting ISCMEB model.}
+\item{seed}{An optional integer, the random seed in fitting iSC.MEB model.}
 
 \item{coreNum}{An optional positive integer, means the number of thread used in parallel computating (1 by default).}
 
@@ -51,10 +51,10 @@ SetModelParameters(
 \item{c_penalty}{An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).}
 }
 \value{
-Returns ISCMEB object.
+Returns iSC.MEB object.
 }
 \description{
-Set model parameters for ISCMEB method
+Set model parameters for iSC.MEB method
 }
 \examples{
 data(iSCMEBObj_toy)
