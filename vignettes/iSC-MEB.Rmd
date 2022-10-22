@@ -18,8 +18,10 @@ knitr::opts_chunk$set(
 This vignette provides an introduction to the R package `iSC.MEB`, where the function `iSC.MEB` implements the model `iSCMEB`, a integrate spatial clustering analysis method with hidden Markov random field using empirical Bayes.
 The package can be installed with the following command from [Github](https://github.com/XiaoZhangryy/iSC.MEB):
 
-`install.packages('devtools')`
-`devtools::install_github("XiaoZhangryy/iSC.MEB")`
+```{r  eval=FALSE}
+install.packages('devtools')
+devtools::install_github("XiaoZhangryy/iSC.MEB")
+```
 
 The package can be loaded with the command:
 ```{r  eval=TRUE}
