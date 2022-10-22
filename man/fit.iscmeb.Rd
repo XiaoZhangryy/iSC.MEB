@@ -20,7 +20,8 @@ fit.iscmeb(
   seed = 1,
   coreNum = 1,
   criteria = c("MBIC", "MAIC", "BIC", "AIC"),
-  c_penalty = 1
+  c_penalty = 1,
+  pca.method = "PCA"
 )
 }
 \arguments{
@@ -55,12 +56,17 @@ fit.iscmeb(
 \item{criteria}{A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).}
 
 \item{c_penalty}{An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).}
+
+\item{pca.method}{A string specify the dimension reduction method used to generate \code{VList}. "PCA" by default.}
 }
 \value{
-Returns a SCMEB_Result_Object object which contains all model results.
+Returns a iSCMEBResObj object which contains all model results.
 }
 \description{
-Fit a iSC.MEB model.
+The function \code{fit.iscmeb} is used to fit a iSC.MEB model.
+}
+\details{
+iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm.
 }
 \examples{
 data(iSCMEBObj_toy)
@@ -72,5 +78,5 @@ AdjList <- CreateNeighbors(posList, platform = "Visium")
 resList <- fit.iscmeb(VList, AdjList, K=7, maxIter=10)
 }
 \seealso{
-\code{\link{runPCA}}, \code{\link{CreateNeighbors}}
+\code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{iSCMEBResObj-class}}
 }

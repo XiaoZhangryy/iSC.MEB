@@ -54,7 +54,7 @@ SetModelParameters(
 Returns iSC.MEB object.
 }
 \description{
-Set model parameters for iSC.MEB method
+The function \code{SetModelParameters} is used to set model parameters for iSC.MEB.
 }
 \examples{
 data(iSCMEBObj_toy)

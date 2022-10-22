@@ -4,9 +4,6 @@
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/404.html</loc>
   </url>
   <url>
-    <loc>https://github.com/XiaoZhangryy/iSC.MEB/articles/index.html</loc>
-  </url>
-  <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/articles/iSC-MEB.html</loc>
   </url>
   <url>
@@ -16,28 +13,64 @@
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/articles/iSC.MEB.seqFISH.html</loc>
   </url>
   <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/authors.html</loc>
   </url>
   <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/CreateiSCMEBObject.html</loc>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/Addposition.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/CalculateTSNE.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/CalculateUMAP.html</loc>
   </url>
   <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/CreateNeighbors.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/CreateiSCMEBObject.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/Human_HK_genes.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/IntegrateSpaData.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/LowEmbedPlot.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/Mouse_HK_genes.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/SelectKPlot.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/SelectModel.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/SetModelParameters.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/SpaHeatMap.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/doDEG.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/doHeatmap.html</loc>
   </url>
   <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/embeddings.html</loc>
   </url>
   <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/fit.iscmeb.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/idents.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/index.html</loc>
   </url>
   <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/iSCMEB.html</loc>
@@ -49,12 +82,21 @@
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/iSCMEBObj_toy.html</loc>
   </url>
   <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/iSCMEBResObj-class.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/idents.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/plot_RGB.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/plot_scatter.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/runPCA.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/SelectModel.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/XiaoZhangryy/iSC.MEB/reference/SetModelParameters.html</loc>
   </url>
 </urlset>

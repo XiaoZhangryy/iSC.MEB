@@ -10,21 +10,24 @@ runPCA(
   obj,
   npcs = 15,
   pca.method = c("APCA", "PCA", "WPCA"),
-  reduction.name = "pca"
+  reduction.name = "pca",
+  seed = 1
 )
 
 \method{runPCA}{iSCMEBObj}(
   obj,
   npcs = 15,
   pca.method = c("APCA", "PCA", "WPCA"),
-  reduction.name = "pca"
+  reduction.name = "pca",
+  seed = 1
 )
 
 \method{runPCA}{list}(
   obj,
   npcs = 15,
   pca.method = c("APCA", "PCA", "WPCA"),
-  reduction.name = "pca"
+  reduction.name = "pca",
+  seed = 1
 )
 }
 \arguments{
@@ -35,6 +38,8 @@ runPCA(
 \item{pca.method}{A string, specify which kind of PCA to be used. Supporting "APCA" (the approximate PCA), "PCA" (the classical PCA) and "WPCA" (the weighted PCA). Default method is APCA.}
 
 \item{reduction.name}{Dimensional reduction name, pca by default}
+
+\item{seed}{The random seed for APCA method. 1 by default.}
 }
 \value{
 Returns a revised iSCMEBObj object when input a iSCMEBObj.
@@ -42,7 +47,7 @@ Returns a revised iSCMEBObj object when input a iSCMEBObj.
 Returns a revised list when input a seuList or matrix list.
 }
 \description{
-Dimensionality reduction using PCA.
+The function \code{runPCA} is used to run PCA dimensionality reduction.
 }
 \details{
 seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. matrix list is a list of log-transformed expression matrix, element of which has same columns.

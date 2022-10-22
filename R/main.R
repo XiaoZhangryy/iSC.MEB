@@ -69,9 +69,32 @@ get_initial_value4seqK <- function(
     return(list(y0k = y0k, Mu0k=Mu0k, Sigma0k=Sigma0k, Pi0k=Pi0k))
 }
 
+#' Each iSCMEBResObj object has a number of slots which store information.
+#'
+#' @useDynLib iSC.MEB, .registration = TRUE
+#' @description Each iSCMEBResObj object has a number of slots which store information. Key slots to access are listed below.
+#' \itemize{
+#'   \item \code{posList} - The position matrix list for a iSCMEBResObj object.
+#'   \item \code{paramList} - The model parameter settings for a iSCMEBResObj object.
+#'   \item \code{fitList} - The details of iSC.MEB models.
+#'   \item \code{project} - Name of the project.
+#'   \item \code{reduction} - The dimension reduction result of iSC.MEB model.
+#'   \item \code{idents} - The clustering result of iSC.MEB model.
+#' }
+setClass("iSCMEBResObj", slots=list(
+  posList = "ANY", 
+  paramList= "list", 
+  fitList = "ANY",
+  project = "character",
+  reduction = "list",
+  idents = "ANY"
+) )
+
 #' Fit a iSC.MEB model.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{fit.iscmeb} is used to fit a iSC.MEB model.
 #' @export
 #' @param VList A list of PCs of log-normalized gene expression matrix. The i-th element is a ni * npcs matrtix, where ni is the number of spots of sample i, and npcs is the number of PC. We provide this interface for those users who would like to define the PCs by their own. 
 #' @param AdjList A list of adjacency matrix with class \code{dgCMatrix}. We provide this interface for those users who would like to define the adjacency matrix by their own.
@@ -89,9 +112,11 @@ get_initial_value4seqK <- function(
 #' @param coreNum An optional positive integer, means the number of thread used in parallel computating (1 by default).
 #' @param criteria A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).
 #' @param c_penalty An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).
+#' @param pca.method A string specify the dimension reduction method used to generate \code{VList}. "PCA" by default. 
 #'
-#' @return Returns a SCMEB_Result_Object object which contains all model results.
-#' @seealso \code{\link{runPCA}}, \code{\link{CreateNeighbors}}
+#' @return Returns a iSCMEBResObj object which contains all model results.
+#' @details iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm. 
+#' @seealso \code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{iSCMEBResObj-class}}
 #'
 #' @importFrom stats cov
 #'
@@ -107,7 +132,7 @@ fit.iscmeb <- function(
     VList, AdjList, K, beta_grid=seq(0, 5, by=0.2), maxIter_ICM=6, maxIter=25, 
     epsLogLik=1e-5, verbose=TRUE, int.model="EEE", init.start=1, 
     Sigma_equal = FALSE, Sigma_diag = TRUE, seed=1, coreNum=1, 
-    criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty=1) 
+    criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty=1, pca.method="PCA") 
 {
     error_heter <- TRUE
     M <- length(VList)
@@ -137,51 +162,61 @@ fit.iscmeb <- function(
     result <- result[order(K.order)]
     K      <- K[order(K.order)]
 
-    output = vector("list")
-    output$fit = result
+    output <- new(
+        Class = "iSCMEBResObj",
+        posList = NULL,
+        paramList= list(),
+        fitList = result,
+        project = "iSC.MEB",
+        reduction = list(),
+        idents = NULL
+    )
 
     n  <- sum(sapply(VList, nrow))
     nT <- length(VList)
 
-    output$dfs = sapply(K, function(K0) degree.freedom(K0, q, nT, Sigma_equal, Sigma_diag, Sp_embed))
-    output$log_likes = unlist(lapply(result, function(fit) fit$loglik))
-    output$MAIC <- -2.0*output$log_likes + output$dfs*2*log(log(q+n))*c_penalty
-    output$AIC  <- -2.0*output$log_likes + output$dfs*2
-    output$MBIC <- -2.0*output$log_likes + output$dfs*log(n)*log(log(q+n))*c_penalty
-    output$BIC  <- -2.0*output$log_likes + output$dfs*log(n)
+    output@paramList$dfs = sapply(K, function(K0) degree.freedom(K0, q, nT, Sigma_equal, Sigma_diag, Sp_embed))
+    output@paramList$log_likes = unlist(lapply(result, function(fit) fit$loglik))
+    output@paramList$MAIC <- -2.0*output@paramList$log_likes + output@paramList$dfs*2*log(log(q+n))*c_penalty
+    output@paramList$AIC  <- -2.0*output@paramList$log_likes + output@paramList$dfs*2
+    output@paramList$MBIC <- -2.0*output@paramList$log_likes + output@paramList$dfs*log(n)*log(log(q+n))*c_penalty
+    output@paramList$BIC  <- -2.0*output@paramList$log_likes + output@paramList$dfs*log(n)
 
     criteria = match.arg(criteria)
     Mycriteria <- switch(
         criteria, 
-        MAIC = output$MBIC,
-        AIC  = output$AIC,
-        MBIC = output$MBIC, 
-        BIC  = output$BIC 
+        MAIC = output@paramList$MBIC,
+        AIC  = output@paramList$AIC,
+        MBIC = output@paramList$MBIC, 
+        BIC  = output@paramList$BIC 
     )
 
-    output$opt  = which.min(Mycriteria)
-    output$optK = K[output$opt]
-    output$optSolution = output$fit[[output$opt]]
-
-    param <- list(
-        K  = K,
-        n  = sapply(VList, nrow),
-        q  = q,
-        Sigma_diag  = Sigma_diag,
-        Sigma_equal = Sigma_equal,
-        Sp_embed    = Sp_embed,
-        nT = nT
-    )
-    param$modelselect = switch(
+    output@paramList$opt  = which.min(Mycriteria)
+    output@paramList$optK = K[output@paramList$opt]
+    if (is.null(names(VList))) {
+        output@paramList$sample_name = paste0("Sample", c(1:nT))
+    } else {
+        output@paramList$sample_name = names(VList)
+    }
+    output@paramList$K  = K
+    output@paramList$n  = sapply(VList, nrow)
+    output@paramList$q  = q
+    output@paramList$Sigma_diag  = Sigma_diag
+    output@paramList$Sigma_equal = Sigma_equal
+    output@paramList$Sp_embed    = Sp_embed
+    output@paramList$nT = nT
+    output@paramList$modelselect = switch(
         criteria, 
         MAIC = paste0("MAIC_", c_penalty),
         AIC  = "AIC",
         MBIC = paste0("MBIC_", c_penalty), 
         BIC  = "BIC" 
     )
-    output$param <- param
-
-    class(output) <- "SCMEB_Result_Object"
+    output@paramList$pca.method <- pca.method
+    
+    output@reduction[[pca.method]] <- VList
+    output@reduction$iSCMEB = output@fitList[[output@paramList$opt]]$hZ
+    output@idents = lapply(output@fitList[[output@paramList$opt]]$cluster, as.vector)
     
     return(output)
 }
@@ -216,6 +251,8 @@ degree.freedom <- function(K, q, nT, Sigma_equal, Sigma_diag, Sp_embed) {
 #' Fit a iSC.MEB model.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{iSCMEB} is used to fit a iSC.MEB model for a iSCMEBObj object.
 #' @export
 #' @param iSCMEBObj A iSCMEBObj object. 
 #' @param K An optional integer or integer vector, specify the candidates of number of clusters. if \code{K=NULL}, it will be set to 5~12.
@@ -223,7 +260,7 @@ degree.freedom <- function(K, q, nT, Sigma_equal, Sigma_diag, Sp_embed) {
 #' @details The model results are saved in the slot of resList.
 #'
 #' @return Returns a revised iSCMEBObj object.
-#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{SetModelParameters}}
+#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{SetModelParameters}}, \code{\link{iSCMEBResObj-class}}
 #'
 #' @examples
 #' data(iSCMEBObj_toy)
@@ -242,11 +279,12 @@ iSCMEB <- function(iSCMEBObj, K=NULL){
     ## Get pcs
     reduction.name <- iSCMEBObj@parameterList$reduction.name
     VList <- lapply(iSCMEBObj@seulist, function(seu) seu[[reduction.name]]@cell.embeddings)
+    names(VList) = names(iSCMEBObj@seulist)
   
     # get parameters
     beta_grid <- iSCMEBObj@parameterList$beta_grid
     maxIter_ICM <- iSCMEBObj@parameterList$maxIter_ICM
-    maxIter <- iSCMEBObj@parameterList$ maxIter
+    maxIter <- iSCMEBObj@parameterList$maxIter
     epsLogLik <- iSCMEBObj@parameterList$epsLogLik
     verbose <- iSCMEBObj@parameterList$verbose
     int.model <- iSCMEBObj@parameterList$int.model
@@ -257,6 +295,7 @@ iSCMEB <- function(iSCMEBObj, K=NULL){
     coreNum <- iSCMEBObj@parameterList$coreNum
     criteria <- iSCMEBObj@parameterList$criteria
     c_penalty <- iSCMEBObj@parameterList$c_penalty
+    pca.method <- iSCMEBObj@parameterList$pca.method
   
     ## Centering
     iSCMEBObj@resList <- fit.iscmeb(
@@ -265,7 +304,7 @@ iSCMEB <- function(iSCMEBObj, K=NULL){
         K=K, 
         beta_grid= beta_grid,
         maxIter_ICM=maxIter_ICM,
-        maxIter= maxIter,
+        maxIter=maxIter,
         epsLogLik=epsLogLik,
         verbose=verbose,
         int.model=int.model,
@@ -275,7 +314,9 @@ iSCMEB <- function(iSCMEBObj, K=NULL){
         seed=seed,
         coreNum=coreNum,
         criteria=criteria,
-        c_penalty=c_penalty)
+        c_penalty=c_penalty,
+        pca.method=pca.method)
+    if (!is.null(iSCMEBObj@posList)) iSCMEBObj@resList@posList = iSCMEBObj@posList
     
     return(iSCMEBObj)
 }

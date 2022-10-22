@@ -1,15 +1,17 @@
 #' Select best iSC.MEB model from candidated models. 
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{SelectModel} is used to select an optimal solution by given criteria or number of clusters.
 #' @export
-#' @param obj A iSCMEBObj object or SCMEB_Result_Object object. 
+#' @param obj A iSCMEBObj object or iSCMEBResObj object. 
 #' @param criteria A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).
 #' @param c_penalty An optional positive value, the adjusted constant used in the MBIC criteria (1 by default).
 #' @param K An optional number of cluster. When K is not null, the iSC.MEB solution with K clusters will be selected, default is \code{NULL}. 
 #'
-#' @details SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' @details iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm. 
 #' 
-#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
+#' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}, \code{\link{iSCMEBResObj-class}}
 #'
 #' @examples
 #' data(iSCMEBObj_toy)
@@ -27,9 +29,9 @@ SelectModel.iSCMEBObj <- function(obj, criteria=c("MBIC", "MAIC", "BIC", "AIC"),
 
 #' @return Returns a revised list
 #' @rdname SelectModel
-#' @method SelectModel SCMEB_Result_Object
+#' @method SelectModel iSCMEBResObj
 #' @export
-SelectModel.SCMEB_Result_Object <- function(obj, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty = 1, K = NULL) {
+SelectModel.iSCMEBResObj <- function(obj, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty = 1, K = NULL) {
     obj <- selectmodel(obj, criteria=criteria, c_penalty = c_penalty, K = K)
     obj
 }
@@ -37,23 +39,24 @@ SelectModel.SCMEB_Result_Object <- function(obj, criteria=c("MBIC", "MAIC", "BIC
 selectmodel <- function(resList, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty = 1, K = NULL) {
     if (is.null(K)) {
         criteria = match.arg(criteria)
-        d <- resList$param$q
-        n <- sum(resList$param$nt)
-        Kseq <- resList$param$Kseq
-        resList$MAIC <- -2.0*resList$log_likes + resList$dfs*2*log(log(d+n))*c_penalty
-        resList$MBIC <- -2.0*resList$log_likes + resList$dfs*log(n)*log(log(d+n))*c_penalty
+        d <- resList@paramList$q
+        n <- sum(resList@paramList$n)
+        Kseq <- resList@paramList$K
+        resList@paramList$MAIC <- -2.0*resList@paramList$log_likes + resList@paramList$dfs*2*log(log(d+n))*c_penalty
+        resList@paramList$MBIC <- -2.0*resList@paramList$log_likes + resList@paramList$dfs*log(n)*log(log(d+n))*c_penalty
         
         Mycriteria <- switch(
             criteria, 
-            MAIC = resList$MAIC,
-            AIC  = resList$AIC,
-            MBIC = resList$MBIC, 
-            BIC  = resList$BIC 
+            MAIC = resList@paramList$MAIC,
+            AIC  = resList@paramList$AIC,
+            MBIC = resList@paramList$MBIC, 
+            BIC  = resList@paramList$BIC 
         )
-        resList$opt  = which.min(Mycriteria)
-        resList$optK = Kseq[resList$opt]
-        resList$optSolution = resList$fit[[resList$opt]]
-        resList$param$modelselect = switch(
+        resList@paramList$opt  = which.min(Mycriteria)
+        resList@paramList$optK = Kseq[resList@paramList$opt]
+        resList@reduction$iSCMEB = resList@fitList[[resList@paramList$opt]]$hZ
+        resList@idents = lapply(resList@fitList[[resList@paramList$opt]]$cluster, as.vector)
+        resList@paramList$modelselect = switch(
             criteria, 
             MAIC = paste0("MAIC_", c_penalty),
             AIC  = "AIC",
@@ -61,12 +64,13 @@ selectmodel <- function(resList, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_pen
             BIC  = "BIC" 
         )
     } else {
-        Kseq <- resList$param$Kseq
-        if (!(K %in% Kseq)) stop("K is not in Kseq!")
-        resList$optK = K
-        resList$opt  = which(Kseq == K)
-        resList$optSolution = resList$fit[[resList$opt]]
-        resList$param$modelselect = paste0("Given K=", K)
+        Kseq <- resList@paramList$K
+        if (!(K %in% Kseq)) stop("SelectModel: check argument: K! K is not in Kseq!")
+        resList@paramList$optK = K
+        resList@paramList$opt  = which(Kseq == K)
+        resList@reduction$iSCMEB = resList@fitList[[resList@paramList$opt]]$hZ
+        resList@idents = lapply(resList@fitList[[resList@paramList$opt]]$cluster, as.vector)
+        resList@paramList$modelselect = paste0("Given K=", K)
     }
     
     return(resList)
@@ -75,12 +79,15 @@ selectmodel <- function(resList, criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_pen
 #' Get the identity of iSC.MEB
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{idents} is used to get the clustering result of iSC.MEB model.
 #' @export
-#' @param obj An iSCMEBObj object or SCMEB_Result_Object object. 
+#' @param obj An iSCMEBObj object or iSCMEBResObj object. 
 #'
-#' @details SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' @details iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
 #' 
 #' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
+#' @details iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm. 
 #'
 #' @examples
 #' data(iSCMEBObj_toy)
@@ -92,26 +99,29 @@ idents <- function(obj) UseMethod("idents")
 #' @method idents iSCMEBObj
 #' @export
 idents.iSCMEBObj <- function(obj) {
-    obj@resList$optSolution$cluster
+    yList2factor(obj@resList@idents)
 }
 
 #' @return Returns a list of identity, whose i-th element is the identity of i-th tissue section.
 #' @rdname idents
-#' @method idents SCMEB_Result_Object
+#' @method idents iSCMEBResObj
 #' @export
-idents.SCMEB_Result_Object <- function(obj) {
-    obj$optSolution$cluster
+idents.iSCMEBResObj <- function(obj) {
+    yList2factor(obj@idents)
 }
 
 #' Get the identity of iSC.MEB
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{embeddings} is used to get the low dimensional embeddings of iSC.MEB model.
 #' @export
-#' @param obj An iSCMEBObj object or SCMEB_Result_Object object. 
+#' @param obj An iSCMEBObj object or iSCMEBResObj object. 
 #'
-#' @details SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
+#' @details iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package. 
 #' 
 #' @seealso \code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
+#' @details iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm. 
 #'
 #' @examples
 #' data(iSCMEBObj_toy)
@@ -123,13 +133,29 @@ embeddings <- function(obj) UseMethod("embeddings")
 #' @method embeddings iSCMEBObj
 #' @export
 embeddings.iSCMEBObj <- function(obj) {
-    obj@resList$optSolution$hZ
+    obj@resList@reduction$iSCMEB
 }
 
 #' @return Returns a list of embedding, whose i-th element is the embedding of i-th tissue section.
 #' @rdname embeddings
-#' @method embeddings iSCSCMEB_Result_ObjectMEBObj
+#' @method embeddings iSCMEBResObj
 #' @export
-embeddings.iSCSCMEB_Result_ObjectMEBObj <- function(obj) {
-    obj$optSolution$hZ
+embeddings.iSCMEBResObj <- function(obj) {
+    obj@reduction$iSCMEB
+}
+
+getFeature <- function(obj, feature.name) UseMethod("getFeature")
+
+getFeature.iSCMEBObj <- function(obj, feature.name) {
+    getFeature(obj@resList, feature.name)
+}
+
+getFeature.iSCMEBResObj <- function(obj, feature.name) {
+    if (feature.name == "VList") {
+        pca.method = obj@paramList$pca.method
+        obj@reduction[[pca.method]]
+    } else {
+        opt = obj@paramList$opt
+        obj@fitList[[opt]][[feature.name]]
+    }
 }

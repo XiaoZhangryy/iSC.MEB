@@ -3,17 +3,17 @@
 \name{embeddings}
 \alias{embeddings}
 \alias{embeddings.iSCMEBObj}
-\alias{embeddings.iSCSCMEB_Result_ObjectMEBObj}
+\alias{embeddings.iSCMEBResObj}
 \title{Get the identity of iSC.MEB}
 \usage{
 embeddings(obj)
 
 \method{embeddings}{iSCMEBObj}(obj)
 
-\method{embeddings}{iSCSCMEB_Result_ObjectMEBObj}(obj)
+\method{embeddings}{iSCMEBResObj}(obj)
 }
 \arguments{
-\item{obj}{An iSCMEBObj object or SCMEB_Result_Object object.}
+\item{obj}{An iSCMEBObj object or iSCMEBResObj object.}
 }
 \value{
 Returns a list of embedding, whose i-th element is the embedding of i-th tissue section.
@@ -21,10 +21,12 @@ Returns a list of embedding, whose i-th element is the embedding of i-th tissue 
 Returns a list of embedding, whose i-th element is the embedding of i-th tissue section.
 }
 \description{
-Get the identity of iSC.MEB
+The function \code{embeddings} is used to get the low dimensional embeddings of iSC.MEB model.
 }
 \details{
-SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
+iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
+
+iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm.
 }
 \examples{
 data(iSCMEBObj_toy)

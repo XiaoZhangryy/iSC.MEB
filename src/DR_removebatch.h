@@ -12,6 +12,7 @@ struct Obj_SCMEBTwo{
     arma::field<ivec> cluster;
     arma::field<arma::mat> hZ;
     arma::field<arma::mat> hV;
+    arma::field<arma::mat> Rf;
     arma::mat Mu;
     arma::cube Sigma;
     arma::cube Psi;

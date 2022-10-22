@@ -10,16 +10,16 @@ Authors@R:
              email = "xiao.zhang@duke-nus.edu.sg"),
       person(given = "Wei",
              family = "Liu",
-             role = c("aut", "cre")),
+             role = c("aut")),
       person(given = "Jin",
              family = "Liu",
              role = "aut"))
-Author: Xiao Zhang [aut, cre], Wei Liu [aut, cre], Jin Liu [aut]
+Author: Xiao Zhang [aut, cre], Wei Liu [aut], Jin Liu [aut]
 Maintainer: Xiao Zhang <xiao.zhang@duke-nus.edu.sg>
 Description: An efficient data integration method is provided for multiple spatial transcriptomics data with non-cluster-relevant effects such as the complex batch effects.
 License: GPL-3
-Depends: gtools, R (>= 4.0.0)
-Imports: Rcpp (>= 1.0.8.3), mclust, irlba, stats, parallel, pbapply, purrr, Matrix, DR.SC, methods, Seurat, dplyr
+Depends: gtools, R (>= 4.0.0), ggplot2
+Imports: Rcpp (>= 1.0.8.3), mclust, irlba, stats, parallel, pbapply, purrr, Matrix, DR.SC, methods, Seurat, dplyr, scater, ggpubr
 LinkingTo: Rcpp, RcppArmadillo
 LazyData: true
 LazyDataCompression:xz

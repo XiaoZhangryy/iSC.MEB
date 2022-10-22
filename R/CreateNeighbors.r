@@ -115,6 +115,8 @@ getAdj_reg <- function(pos, platform= "Visium"){
 #' Calculate adjacency matrix form spatial coordinates.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{CreateNeighbors} is used to calculate adjacency matrix form spatial coordinates.
 #' @export
 #' @param obj A seuList or iSCMEBObj object or posList. 
 #' @param platform A string, specify the platform of the provided data, default as "Other", and only support "ST" and "Visium" platform. When platform is specified as "Other", adjacency matrix will built based on L2 distance. 
@@ -140,7 +142,7 @@ CreateNeighbors <- function(obj, platform=c("Other", "ST", "Visium"), lower.med=
 #' @method CreateNeighbors iSCMEBObj
 #' @export
 CreateNeighbors.iSCMEBObj <- function(obj, platform=c("Other", "ST", "Visium"), lower.med=4, upper.med=6, radius.upper= 100) {
-    posList <- lapply(obj@seulist, function(x) as.matrix(x@meta.data[,c("row", "col")]))
+    posList <- obj@posList
     platform = match.arg(platform)
     AdjList <- runneighbors(posList, platform=platform, lower.med=lower.med, upper.med=upper.med, radius.upper=radius.upper)
     obj@AdjList <- AdjList
@@ -196,6 +198,8 @@ runneighbors <- function(posList, platform=c("Other", "ST", "Visium"), lower.med
 #' Set model parameters for iSC.MEB method
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{SetModelParameters} is used to set model parameters for iSC.MEB. 
 #' @export
 #' @param obj An iSCMEBObj object. 
 #' @param beta_grid An optional vector of positive value, the candidate set of the smoothing parameter to be searched by the grid-search optimization approach, defualt as a sequence starts from 0, ends with 5, increase by 0.2. 
@@ -224,20 +228,19 @@ SetModelParameters <- function(obj, beta_grid=seq(0, 5, by=0.2), maxIter_ICM=6, 
     Sigma_equal = FALSE, Sigma_diag = TRUE, seed=1, coreNum=1, 
     criteria=c("MBIC", "MAIC", "BIC", "AIC"), c_penalty=1) {
     criteria = match.arg(criteria)
-    para_settings <- list(
-        beta_grid= beta_grid,
-        maxIter_ICM=maxIter_ICM,
-        maxIter= maxIter,
-        epsLogLik=epsLogLik,
-        verbose=verbose,
-        int.model=int.model,
-        init.start=init.start,
-        Sigma_equal=Sigma_equal, 
-        Sigma_diag=Sigma_diag,
-        seed=seed,
-        coreNum=coreNum,
-        criteria=criteria,
-        c_penalty=c_penalty)
-    obj@parameterList <- c(obj@parameterList, para_settings)
+    
+    obj@parameterList$beta_grid= beta_grid
+    obj@parameterList$maxIter_ICM=maxIter_ICM
+    obj@parameterList$maxIter=maxIter
+    obj@parameterList$epsLogLik=epsLogLik
+    obj@parameterList$verbose=verbose
+    obj@parameterList$int.model=int.model
+    obj@parameterList$init.start=init.start
+    obj@parameterList$Sigma_equal=Sigma_equal
+    obj@parameterList$Sigma_diag=Sigma_diag
+    obj@parameterList$seed=seed
+    obj@parameterList$coreNum=coreNum
+    obj@parameterList$criteria=criteria
+    obj@parameterList$c_penalty=c_penalty
     obj
 }

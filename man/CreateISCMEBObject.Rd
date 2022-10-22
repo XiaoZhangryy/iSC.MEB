@@ -8,7 +8,7 @@ CreateiSCMEBObject(
   seuList,
   project = "iSC.MEB",
   gene.number = 2000,
-  selectGenesMethod = "SPARK-X",
+  selectGenesMethod = c("SPARK-X", "HVGs"),
   numCores_sparkx = 1,
   customGenelist = NULL,
   premin.spots = 20,
@@ -48,7 +48,7 @@ CreateiSCMEBObject(
 Returns iSC.MEB object prepared for iSC.MEB model fitting.
 }
 \description{
-Create the iSC.MEB object with preprocessing step.
+The function \code{CreateiSCMEBObject} is used to create the iSC.MEB object with preprocessing step.
 }
 \details{
 seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch.

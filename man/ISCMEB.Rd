@@ -15,7 +15,7 @@ iSCMEB(iSCMEBObj, K = NULL)
 Returns a revised iSCMEBObj object.
 }
 \description{
-Fit a iSC.MEB model.
+The function \code{iSCMEB} is used to fit a iSC.MEB model for a iSCMEBObj object.
 }
 \details{
 The model results are saved in the slot of resList.
@@ -29,5 +29,5 @@ iSCMEBObj_toy <- SetModelParameters(iSCMEBObj_toy, maxIter=10)
 iSCMEBObj_toy <- iSCMEB(iSCMEBObj_toy, K = 7)
 }
 \seealso{
-\code{\link{iSCMEBObj-class}}, \code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{SetModelParameters}}
+\code{\link{iSCMEBObj-class}}, \code{\link{runPCA}}, \code{\link{CreateNeighbors}}, \code{\link{SetModelParameters}}, \code{\link{iSCMEBResObj-class}}
 }

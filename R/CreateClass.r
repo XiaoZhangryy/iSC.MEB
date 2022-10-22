@@ -91,14 +91,16 @@ selectIntFeatures <- function(seulist, spaFeatureList, IntFeatures=2000){
 #'   \item \code{seuList} - A list with Seurat object as component, representing the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information is saved in the metadata of Seurat, named "row" and "col" for eahc data batch.
 #'   \item \code{seulist} - A Seurat list after the preprocessing step in preparation for iSC.MEB model.
 #'   \item \code{AdjList} - The adjacency matrix list for a iSCMEBObj object.
+#'   \item \code{posList} - The position matrix list for a iSCMEBObj object.
 #'   \item \code{parameterList} - The model parameter settings for a iSCMEBObj object.
-#'   \item \code{resList} - The results after fitting iSC.MEB models.
+#'   \item \code{resList} - The results after fitting iSC.MEB models, which is a iSCMEBResObj object.
 #'   \item \code{project} - Name of the project.
 #' }
 setClass("iSCMEBObj", slots=list(
   seuList = "ANY",
   seulist = "ANY",
   AdjList = "ANY", 
+  posList = "ANY", 
   parameterList= "list", 
   resList = "ANY",
   project = "character"
@@ -107,6 +109,8 @@ setClass("iSCMEBObj", slots=list(
 #' Create the iSC.MEB object with preprocessing step.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{CreateiSCMEBObject} is used to create the iSC.MEB object with preprocessing step.
 #' @export
 #' @param seuList A list consisting of Seurat objects, where each object is a SRT data batch. The default assay of each Seurat object will be used for data preprocessing and followed model fitting. The specified format about seuList argument can be referred to the details and example. 
 #' @param project An optional string, name of the project, default as "iSC.MEB".
@@ -147,9 +151,10 @@ setClass("iSCMEBObj", slots=list(
 #' Genelist <- row.names(seuList[[1]])
 #' iSCMEBObj_toy2 <- CreateiSCMEBObject(seuList, customGenelist=Genelist, verbose=FALSE)
 CreateiSCMEBObject <- function(seuList, project = "iSC.MEB", gene.number=2000, 
-    selectGenesMethod='SPARK-X', numCores_sparkx=1, customGenelist=NULL, 
+    selectGenesMethod=c('SPARK-X', 'HVGs'), numCores_sparkx=1, customGenelist=NULL, 
     premin.spots = 20, premin.features=20, postmin.spots=15, postmin.features=15,
     rawData.preserve=FALSE, verbose=TRUE ){
+    selectGenesMethod = match.arg(selectGenesMethod)
     if(!inherits(seuList, "list")) stop("CreateiSCMEBObject: check the argument: seuList! it must be a list.")
     
     # Check Seurat object
@@ -178,6 +183,7 @@ CreateiSCMEBObject <- function(seuList, project = "iSC.MEB", gene.number=2000,
         seuList = seuList,
         seulist = NULL,
         AdjList = NULL, 
+        posList = NULL,
         parameterList= list(),
         resList = NULL,
         project = project
@@ -228,7 +234,9 @@ CreateiSCMEBObject <- function(seuList, project = "iSC.MEB", gene.number=2000,
     seulist <- lapply(seulist, filter_spot, postmin.features)
     seulist <- pbapply::pblapply(seulist, filter_gene, postmin.spots)
     seulist <- lapply(seulist, NormalizeData, verbose=verbose)
+    names(seulist) <- names(seuList)
     object@seulist <- seulist
+    object@posList <- lapply(object@seulist, function(x) as.matrix(x@meta.data[,c("row", "col")]))
     
     if(!rawData.preserve){
         object@seuList <- NULL

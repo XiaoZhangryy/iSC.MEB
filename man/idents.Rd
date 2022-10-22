@@ -3,17 +3,17 @@
 \name{idents}
 \alias{idents}
 \alias{idents.iSCMEBObj}
-\alias{idents.SCMEB_Result_Object}
+\alias{idents.iSCMEBResObj}
 \title{Get the identity of iSC.MEB}
 \usage{
 idents(obj)
 
 \method{idents}{iSCMEBObj}(obj)
 
-\method{idents}{SCMEB_Result_Object}(obj)
+\method{idents}{iSCMEBResObj}(obj)
 }
 \arguments{
-\item{obj}{An iSCMEBObj object or SCMEB_Result_Object object.}
+\item{obj}{An iSCMEBObj object or iSCMEBResObj object.}
 }
 \value{
 Returns a list of identity, whose i-th element is the identity of i-th tissue section.
@@ -21,10 +21,12 @@ Returns a list of identity, whose i-th element is the identity of i-th tissue se
 Returns a list of identity, whose i-th element is the identity of i-th tissue section.
 }
 \description{
-Get the identity of iSC.MEB
+The function \code{idents} is used to get the clustering result of iSC.MEB model.
 }
 \details{
-SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
+iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
+
+iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm.
 }
 \examples{
 data(iSCMEBObj_toy)

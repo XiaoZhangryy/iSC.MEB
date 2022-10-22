@@ -34,11 +34,14 @@ matlist2mat <- function (XList) {
 #' Dimensionality reduction using PCA.
 #'
 #' @useDynLib iSC.MEB, .registration = TRUE
+#' @description
+#' The function \code{runPCA} is used to run PCA dimensionality reduction.
 #' @export
 #' @param obj A seuList or iSCMEBObj object or matrix list. 
 #' @param npcs Total Number of PCs to compute and store (15 by default). 
 #' @param pca.method A string, specify which kind of PCA to be used. Supporting "APCA" (the approximate PCA), "PCA" (the classical PCA) and "WPCA" (the weighted PCA). Default method is APCA. 
 #' @param reduction.name Dimensional reduction name, pca by default
+#' @param seed The random seed for APCA method. 1 by default. 
 #'
 #' @details seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. matrix list is a list of log-transformed expression matrix, element of which has same columns. 
 #'
@@ -54,15 +57,15 @@ matlist2mat <- function (XList) {
 #' iSCMEBObj_toy2 <- runPCA(iSCMEBObj_toy)
 #' ## seulist <- iSCMEBObj_toy$seulist
 #' ## seulist <- runPCA(seulist)
-runPCA <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") UseMethod("runPCA")
+runPCA <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca", seed = 1) UseMethod("runPCA")
 
 #' @return Returns a revised iSCMEBObj object when input a iSCMEBObj.
 #' @rdname runPCA
 #' @method runPCA iSCMEBObj
 #' @export
-runPCA.iSCMEBObj <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") {
+runPCA.iSCMEBObj <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca", seed = 1) {
     pca.method = match.arg(pca.method)
-    obj@seulist <- runpca(obj@seulist, npcs=npcs, pca.method=pca.method, reduction.name=reduction.name)
+    obj@seulist <- runpca(obj@seulist, npcs=npcs, pca.method=pca.method, reduction.name=reduction.name, seed = seed)
     obj@parameterList$npcs = npcs
     obj@parameterList$pca.method = pca.method
     obj@parameterList$reduction.name = reduction.name
@@ -73,20 +76,21 @@ runPCA.iSCMEBObj <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA
 #' @rdname runPCA
 #' @method runPCA list
 #' @export
-runPCA.list <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") {
+runPCA.list <- function(obj, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca", seed = 1) {
     pca.method = match.arg(pca.method)
     if (all(sapply(obj, function(x) inherits(x, "Seurat")))) {
-        obj <- runpca(obj, npcs=npcs, pca.method=pca.method, reduction.name=reduction.name)
+        obj <- runpca(obj, npcs=npcs, pca.method=pca.method, reduction.name=reduction.name, seed=seed)
         return( obj )
     } else if (all(sapply(obj, function(x) inherits(x, "matrix") | inherits(x, "dgCMatrix") ))) {
-        obj <- runpca_mat(obj, npcs=npcs, pca.method=pca.method, reduction.name=reduction.name)
+        obj <- runpca_mat(obj, npcs=npcs, pca.method=pca.method, reduction.name=reduction.name, seed=seed)
         return( obj )
     } else {
         stop("runPCA: check the argument: obj! When apply runPCA to a list, each component of obj must be a Seurat object or matrix or sparse matrix.")
     }
 }
 
-runpca_mat <- function(matlist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") {
+runpca_mat <- function(matlist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca", seed = 1) {
+    set.seed(seed)
     pca.method = match.arg(pca.method)
     Xmat <- lapply(matlist, scale, scale=F) %>% matlist2mat() %>% as.matrix()
     if (pca.method == "APCA") {
@@ -104,9 +108,10 @@ runpca_mat <- function(matlist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA")
 }
 
 #' @importFrom Matrix t
-#' @importFrom Seurat CreateDimReducObject
+#' @importFrom Seurat CreateDimReducObject DefaultAssay
 #' @importFrom dplyr %>%
-runpca <- function(seulist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca") {
+runpca <- function(seulist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), reduction.name = "pca", seed = 1) {
+    set.seed(seed)
     pca.method = match.arg(pca.method)
     Xmat <- lapply(seulist, function(x) scale(Matrix::t(x@assays$RNA@data), scale=F)) %>% matlist2mat() %>% as.matrix()
     if (pca.method == "APCA") {
@@ -124,7 +129,7 @@ runpca <- function(seulist, npcs = 15, pca.method = c("APCA", "PCA", "WPCA"), re
         hZ = VList[[i]]
         rownames(hZ) <- colnames(seulist[[i]])
         colnames(hZ) <- paste0(pca.method, "_", 1:ncol(hZ))
-        seulist[[i]]@reductions[[reduction.name]] <- Seurat::CreateDimReducObject(embeddings = hZ)
+        seulist[[i]]@reductions[[reduction.name]] <- Seurat::CreateDimReducObject(embeddings = hZ, assay=DefaultAssay(seulist[[i]]))
     }
     seulist
 }

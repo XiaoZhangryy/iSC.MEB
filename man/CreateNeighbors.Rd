@@ -47,7 +47,7 @@ Returns a revised iSCMEBObj object.
 Returns a revised list.
 }
 \description{
-Calculate adjacency matrix form spatial coordinates.
+The function \code{CreateNeighbors} is used to calculate adjacency matrix form spatial coordinates.
 }
 \details{
 seuList is a \link{list} with Seurat object as component, and each Seurat object includes the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information must be saved in the metadata of Seurat, named "row" and "col" for each data batch. posList is a list of position information, each element of which can be a data.frame or matrix. When the element of posList is data.frame, those data.frame should contain columns with names "row" and "col". When the element of posList is matrix, those matrices should be two column matrices.

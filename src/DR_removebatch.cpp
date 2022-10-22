@@ -598,7 +598,7 @@ Obj_SCMEBTwo SepSpatialClusterCpp_GivenK(
   double loglikVal;
   int iter;
   
-  Rprintf("Finish variable initialization \n");
+  if (verbose) Rprintf("Finish variable initialization \n");
   // create posterior expectation and covariance of z+v+u.
   field<mat> Rf(M),  Ff(M), Muf(M);
   // Posterior of z, v and z+v
@@ -698,6 +698,7 @@ Obj_SCMEBTwo SepSpatialClusterCpp_GivenK(
   output.cluster    = yf;
   output.hZ         = Ezz;
   output.hV         = Vf;
+  output.Rf         = Rf;
   output.Mu         = Mu0;
   output.Sigma      = Sigma0;
   output.Psi        = Psi0;
@@ -786,6 +787,7 @@ Rcpp::List SepSpatialClusterCpp(
           Rcpp::Named("cluster")    = parObj.output[k].cluster,
           Rcpp::Named("hZ")         = parObj.output[k].hZ,
           Rcpp::Named("hV")         = parObj.output[k].hV,
+          Rcpp::Named("Rf")         = parObj.output[k].Rf,
           Rcpp::Named("Mu")         = parObj.output[k].Mu,
           Rcpp::Named("Sigma")      = parObj.output[k].Sigma,
           Rcpp::Named("Psi")        = parObj.output[k].Psi,

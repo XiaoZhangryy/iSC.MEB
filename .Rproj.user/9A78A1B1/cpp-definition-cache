@@ -1,7 +1,7 @@
 [
     {
         "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
-        "file_last_write": 1665648001.0,
+        "file_last_write": 1666177537.0,
         "definitions": [
             {
                 "usr": "c:@F@get_spNbs#$@N@arma@S@Col>#I#&1$@N@arma@S@SpMat>#d#",
@@ -159,7 +159,7 @@
                 "parent_name": "",
                 "name": "SepSpatialClusterCpp(const Rcpp::List &, const Rcpp::List &, const Rcpp::List &, const Rcpp::List &, const Rcpp::List &, const arma::cube &, const double &, const arma::vec &, const int &, const int &, const double &, const bool &, const bool &, const bool &, const bool &, const bool &, const arma::uword &, const arma::uword &, const int &)",
                 "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
-                "line": 714,
+                "line": 715,
                 "column": 12,
                 "hidden": false
             },
@@ -169,7 +169,7 @@
                 "parent_name": "par_SCMEBTwo",
                 "name": "loop_by_K_SCMEBTwo(int)",
                 "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
-                "line": 804,
+                "line": 806,
                 "column": 20,
                 "hidden": false
             },
@@ -179,7 +179,7 @@
                 "parent_name": "par_SCMEBTwo",
                 "name": "next_SCMEBTwo",
                 "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
-                "line": 820,
+                "line": 822,
                 "column": 19,
                 "hidden": false
             },
@@ -189,7 +189,7 @@
                 "parent_name": "par_SCMEBTwo",
                 "name": "update_by_thread_SCMEBTwo(int)",
                 "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
-                "line": 829,
+                "line": 831,
                 "column": 20,
                 "hidden": false
             },
@@ -199,7 +199,7 @@
                 "parent_name": "",
                 "name": "getneighborhood_fast(const arma::mat, double)",
                 "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
-                "line": 844,
+                "line": 846,
                 "column": 15,
                 "hidden": false
             },
@@ -209,7 +209,7 @@
                 "parent_name": "",
                 "name": "wpcaCpp(const arma::mat &, const int &, const bool &)",
                 "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.cpp",
-                "line": 870,
+                "line": 872,
                 "column": 12,
                 "hidden": false
             }
@@ -218,7 +218,7 @@
     },
     {
         "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.h",
-        "file_last_write": 1662710307.0,
+        "file_last_write": 1666177501.0,
         "definitions": [
             {
                 "usr": "c:@S@Obj_SCMEBTwo",
@@ -236,7 +236,7 @@
                 "parent_name": "",
                 "name": "par_SCMEBTwo",
                 "file": "D:/DukeNUS/SCMEB2/Code/Github/iSC.MEB/src/DR_removebatch.h",
-                "line": 43,
+                "line": 44,
                 "column": 7,
                 "hidden": false
             }

@@ -10,8 +10,9 @@ Each iSCMEBObj object has a number of slots which store information. Key slots t
   \item \code{seuList} - A list with Seurat object as component, representing the raw expression count matrix, spatial coordinates and meta data for each data batch, where the spatial coordinates information is saved in the metadata of Seurat, named "row" and "col" for eahc data batch.
   \item \code{seulist} - A Seurat list after the preprocessing step in preparation for iSC.MEB model.
   \item \code{AdjList} - The adjacency matrix list for a iSCMEBObj object.
+  \item \code{posList} - The position matrix list for a iSCMEBObj object.
   \item \code{parameterList} - The model parameter settings for a iSCMEBObj object.
-  \item \code{resList} - The results after fitting iSC.MEB models.
+  \item \code{resList} - The results after fitting iSC.MEB models, which is a iSCMEBResObj object.
   \item \code{project} - Name of the project.
 }
 }

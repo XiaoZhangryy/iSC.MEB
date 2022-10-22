@@ -3,7 +3,7 @@
 \name{SelectModel}
 \alias{SelectModel}
 \alias{SelectModel.iSCMEBObj}
-\alias{SelectModel.SCMEB_Result_Object}
+\alias{SelectModel.iSCMEBResObj}
 \title{Select best iSC.MEB model from candidated models.}
 \usage{
 SelectModel(
@@ -20,7 +20,7 @@ SelectModel(
   K = NULL
 )
 
-\method{SelectModel}{SCMEB_Result_Object}(
+\method{SelectModel}{iSCMEBResObj}(
   obj,
   criteria = c("MBIC", "MAIC", "BIC", "AIC"),
   c_penalty = 1,
@@ -28,7 +28,7 @@ SelectModel(
 )
 }
 \arguments{
-\item{obj}{A iSCMEBObj object or SCMEB_Result_Object object.}
+\item{obj}{A iSCMEBObj object or iSCMEBResObj object.}
 
 \item{criteria}{A string, specify the criteria used for selecting the number of clusters, supporting "MBIC", "MAIC", "BIC" and "AIC" ("MBIC" by default).}
 
@@ -42,15 +42,15 @@ Returns a revised iSCMEBObj object.
 Returns a revised list
 }
 \description{
-Select best iSC.MEB model from candidated models.
+The function \code{SelectModel} is used to select an optimal solution by given criteria or number of clusters.
 }
 \details{
-SCMEB_Result_Object is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the main function of our package.
+iSCMEBResObj is an object that contains all iSC.MEB solution information. It is the output of function \code{fit.iscmeb}, which is the body of our algorithm.
 }
 \examples{
 data(iSCMEBObj_toy)
 iSCMEBObj_toy <- SelectModel(iSCMEBObj_toy)
 }
 \seealso{
-\code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}
+\code{\link{iSCMEBObj-class}}, \code{\link{fit.iscmeb}}, \code{\link{iSCMEBResObj-class}}
 }
