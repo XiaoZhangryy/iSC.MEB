@@ -7,4 +7,3 @@ src/*.so
 src/*.dll
 .Rhistory
 .Rbuildignore
-docs
