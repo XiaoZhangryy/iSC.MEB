@@ -73,7 +73,7 @@ iSCMEBObj <- CreateiSCMEBObject(seuList = seuList, customGenelist = Genelist, ve
 ## check the number of genes/features after filtering step
 iSCMEBObj@seulist
 ## Add adjacency matrix list for a iSCMEBObj object to prepare for iSC.MEB model fitting.
-iSCMEBObj <-  CreateNeighbors(iSCMEBObj, radius.upper=4)
+iSCMEBObj <-  CreateNeighbors(iSCMEBObj, radius.upper=10)
 ## run PCA to get low dimensional embeddings
 iSCMEBObj <-  runPCA(iSCMEBObj, npcs = 15, pca.method = "APCA")
 ## Add a model setting in advance for an iSCMEBObj object. verbose = TRUE helps outputing the
@@ -85,8 +85,8 @@ iSCMEBObj <- SetModelParameters(iSCMEBObj, verbose = FALSE, coreNum=8)
 ## Fit iSC.MEB 
 For function `iSCMEB`, users can specify the number of clusters `K` or set `K` to be an integer vector by using modified MBIC(BIC) to determine `K`. Here, we use MBIC to select optimal number of clusters, which is the default method. User can use specifying other criteria in function `SetModelParameters` or using function `SelectModel` to select model after model fitting. Here we briefly explain how to choose the parameter `c_penalty` in the modified BIC. In general, when the number of cluster is considered to be small, such as less than 10 clusters, `c_penalty` often be large, for example 5, 10. And when the number of cluster is considered to be large, `c_penalty` often ranges from 0.5 to 2. Most importantly, iSC.MEB is fast, scaling well in terms of sample size, which allow the user to tune the `c_penalty` based on their prior knowledge about the tissues or cells.
 ```{r  eval = TRUE}
-iSCMEBObj <- iSCMEB(iSCMEBObj, K = 16:23)
-iSCMEBObj <- SelectModel(iSCMEBObj, criteria="MBIC")
+iSCMEBObj <- iSCMEB(iSCMEBObj, K = 15:22)
+iSCMEBObj <- SelectModel(iSCMEBObj, criteria="MBIC", c_penalty = 0.6)
 p1 <- SelectKPlot(iSCMEBObj, criteria="MBIC")
 p1
 ```
@@ -107,7 +107,7 @@ print(ari_all)
 In addition to metrics, we can use some visualization functions to measure the clustering results, such as the spatial scatter plot. 
 ```{r  eval = TRUE}
 p2 <- SpaHeatMap(iSCMEBObj, item="cluster", plot_type="Scatter", 
-    layout.dim=c(3, 2), nrow.legend=2, no_axis=TRUE, point_size=1)
+    layout.dim=c(2, 3), nrow.legend=2, no_axis=TRUE, point_size=1.5)
 p2
 ```
 
@@ -126,6 +126,7 @@ Finally, we also provide functions to fecility user do combined differential exp
 ```{r  eval = TRUE}
 seuInt <- IntegrateSpaData(iSCMEBObj, "mouse")
 top10 <- doDEG(seuInt, topn=10)
+save(iSCMEBObj, top10, seuInt, file="seqfish00.rda")
 p5 <- doHeatmap(seuInt, top10$gene)
 p5
 ```
