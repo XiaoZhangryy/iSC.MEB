@@ -41,7 +41,7 @@ This vignette introduces the `iSC.MEB` workflow for the analysis of the DLPFC da
 * Integrated clustering using `iSC.MEB` model
 * Downstream analysis (i.e. visualization of clusters and embeddings)
 
-We demonstrate the use of `iSC.MEB` to the DLPFC data after filter that are [here](https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data), which can be downloaded to the current working path by the following command:
+We demonstrate the use of `iSC.MEB` to a subset of the DLPFC data after filter that are [here](https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data), which can be downloaded to the current working path by the following command:
 ```{r eval=FALSE}
 githubURL <- "https://github.com/XiaoZhangryy/iSC.MEB/blob/main/vignettes_data/DLPFC.rda?raw=true"
 download.file(githubURL,"DLPFC.rda",mode='wb')
@@ -76,7 +76,7 @@ iSCMEBObj <-  CreateNeighbors(iSCMEBObj, platform = "Visium")
 iSCMEBObj <-  runPCA(iSCMEBObj, npcs = 15, pca.method = "APCA")
 ## Add a model setting in advance for an iSCMEBObj object. verbose = TRUE helps outputing the
 ## information in the algorithm.
-iSCMEBObj <- SetModelParameters(iSCMEBObj, verbose = TRUE, init.start=3)
+iSCMEBObj <- SetModelParameters(iSCMEBObj, verbose = TRUE)
 ```
 
 
@@ -97,7 +97,7 @@ The function `idents` can extract the labels provided by `iSC.MEB` method. There
 ```{r  eval = TRUE}
 LabelList <- lapply(iSCMEBObj@seulist, function(seu) seu@meta.data$layer_guess_reordered)
 ARI <- function(x,y) mclust::adjustedRandIndex(x,y)
-ari_sections <- sapply(1:12, function(i) ARI(idents(iSCMEBObj)[[i]], LabelList[[i]]))
+ari_sections <- sapply(1:2, function(i) ARI(idents(iSCMEBObj)[[i]], LabelList[[i]]))
 ari_all <- ARI(unlist(idents(iSCMEBObj)), unlist(LabelList))
 print(ari_sections)
 print(ari_all)
@@ -107,9 +107,9 @@ print(ari_all)
 ## Spatial scatter plot
 In addition to metrics, we can use some visualization functions to measure the clustering results, such as the spatial scatter plot. 
 ```{r  eval = TRUE}
-cols = c("#8dd3c7", "#80b1d3", "#ffffb3", "#fb8072", "#bebada", "#fdb462", "#b3de69")
+cols = c("#fb8072", "#bebada", "#80b1d3", "#ffffb3", "#8dd3c7", "#b3de69", "#fdb462")
 p1 <- SpaHeatMap(iSCMEBObj, item="cluster", plot_type="Scatter", nrow.legend=1, 
-    layout.dim=c(4,3), no_axis=TRUE, cols=cols)
+    layout.dim=c(1,2), no_axis=TRUE, cols=cols)
 p1
 ```
 

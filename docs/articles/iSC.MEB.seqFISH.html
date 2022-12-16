@@ -75,7 +75,7 @@
       <img src="" class="logo" alt=""><h1>iSC.MEB: seqFISH Data Analysis</h1>
                         <h4 data-toc-skip class="author">Xiao Zhang</h4>
             
-            <h4 data-toc-skip class="date">2022-12-09</h4>
+            <h4 data-toc-skip class="date">2022-12-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/XiaoZhangryy/iSC.MEB/blob/HEAD/vignettes/iSC.MEB.seqFISH.Rmd"><code>vignettes/iSC.MEB.seqFISH.Rmd</code></a></small>
       <div class="d-none name"><code>iSC.MEB.seqFISH.Rmd</code></div>
@@ -98,7 +98,8 @@ T. et al., 2020</a>. The workflow consists of three steps</p>
 <li>Downstream analysis (i.e. visualization of clusters and embeddings,
 combined differential expression analysis)</li>
 </ul>
-<p>We demonstrate the use of iSC.MEB to 6 seqFISH datasets that are <a href="https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data">here</a>,
+<p>We demonstrate the use of iSC.MEB to a subset of the seqFISH datasets
+that are <a href="https://github.com/XiaoZhangryy/iSC.MEB/tree/main/vignettes_data">here</a>,
 which can be downloaded to the current working path by the following
 command:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -125,27 +126,12 @@ command:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
 <span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1528 samples within 1 assay </span></span>
+<span><span class="co">#&gt; 351 features across 1530 samples within 1 assay </span></span>
 <span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1530 samples within 1 assay </span></span>
-<span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1304 samples within 1 assay </span></span>
-<span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[5]]</span></span>
-<span><span class="co">#&gt; An object of class Seurat </span></span>
 <span><span class="co">#&gt; 351 features across 2221 samples within 1 assay </span></span>
-<span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[6]]</span></span>
-<span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1874 samples within 1 assay </span></span>
 <span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="prepare-the-isc-meb-object-">Prepare the <code>iSC.MEB</code> Object.<a class="anchor" aria-label="anchor" href="#prepare-the-isc-meb-object-"></a>
@@ -166,27 +152,12 @@ Here, the adjacency matrix is built based on L2 distance.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
 <span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1519 samples within 1 assay </span></span>
+<span><span class="co">#&gt; 351 features across 1525 samples within 1 assay </span></span>
 <span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1525 samples within 1 assay </span></span>
-<span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1299 samples within 1 assay </span></span>
-<span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[5]]</span></span>
-<span><span class="co">#&gt; An object of class Seurat </span></span>
 <span><span class="co">#&gt; 351 features across 2174 samples within 1 assay </span></span>
-<span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[6]]</span></span>
-<span><span class="co">#&gt; An object of class Seurat </span></span>
-<span><span class="co">#&gt; 351 features across 1830 samples within 1 assay </span></span>
 <span><span class="co">#&gt; Active assay: RNA (351 features, 0 variable features)</span></span>
 <span><span class="co">## Add adjacency matrix list for a iSCMEBObj object to prepare for iSC.MEB model fitting.</span></span>
 <span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateNeighbors.html">CreateNeighbors</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, radius.upper <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -194,7 +165,7 @@ Here, the adjacency matrix is built based on L2 distance.</p>
 <span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, npcs <span class="op">=</span> <span class="fl">15</span>, pca.method <span class="op">=</span> <span class="st">"APCA"</span><span class="op">)</span></span>
 <span><span class="co">## Add a model setting in advance for an iSCMEBObj object. verbose = TRUE helps outputing the</span></span>
 <span><span class="co">## information in the algorithm.</span></span>
-<span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SetModelParameters.html">SetModelParameters</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>, coreNum <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SetModelParameters.html">SetModelParameters</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>, maxIter_ICM <span class="op">=</span> <span class="fl">4</span>, maxIter <span class="op">=</span> <span class="fl">20</span>, coreNum <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="fit-isc-meb">Fit iSC.MEB<a class="anchor" aria-label="anchor" href="#fit-isc-meb"></a>
@@ -215,8 +186,8 @@ considered to be large, <code>c_penalty</code> often ranges from 0.5 to
 size, which allow the user to tune the <code>c_penalty</code> based on
 their prior knowledge about the tissues or cells.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/iSCMEB.html">iSCMEB</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, K <span class="op">=</span> <span class="fl">15</span><span class="op">:</span><span class="fl">22</span><span class="op">)</span></span>
-<span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SelectModel.html">SelectModel</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, criteria <span class="op">=</span> <span class="st">"MBIC"</span>, c_penalty <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/iSCMEB.html">iSCMEB</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, K <span class="op">=</span> <span class="fl">16</span><span class="op">:</span><span class="fl">19</span><span class="op">)</span></span>
+<span><span class="va">iSCMEBObj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SelectModel.html">SelectModel</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, criteria <span class="op">=</span> <span class="st">"MBIC"</span>, c_penalty <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SelectKPlot.html">SelectKPlot</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, criteria <span class="op">=</span> <span class="st">"MBIC"</span><span class="op">)</span></span>
 <span><span class="va">p1</span></span></code></pre></div>
 <p><img src="iSC.MEB.seqFISH_files/figure-html/unnamed-chunk-7-1.png" width="1056"></p>
@@ -230,12 +201,12 @@ performance by some metrics, such as <code>ARI</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">LabelList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">iSCMEBObj</span><span class="op">@</span><span class="va">seulist</span>, <span class="kw">function</span><span class="op">(</span><span class="va">seu</span><span class="op">)</span> <span class="va">seu</span><span class="op">@</span><span class="va">meta.data</span><span class="op">$</span><span class="va">celltype_mapped_refined</span><span class="op">)</span></span>
 <span><span class="va">ARI</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu">mclust</span><span class="fu">::</span><span class="fu"><a href="https://mclust-org.github.io/mclust/reference/adjustedRandIndex.html" class="external-link">adjustedRandIndex</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
-<span><span class="va">ari_sections</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu">ARI</span><span class="op">(</span><span class="fu"><a href="../reference/idents.html">idents</a></span><span class="op">(</span><span class="va">iSCMEBObj</span><span class="op">)</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, <span class="va">LabelList</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ari_sections</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu">ARI</span><span class="op">(</span><span class="fu"><a href="../reference/idents.html">idents</a></span><span class="op">(</span><span class="va">iSCMEBObj</span><span class="op">)</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, <span class="va">LabelList</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ari_all</span> <span class="op">&lt;-</span> <span class="fu">ARI</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="../reference/idents.html">idents</a></span><span class="op">(</span><span class="va">iSCMEBObj</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">LabelList</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ari_sections</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.5056251 0.5220306 0.5696162 0.5029906 0.5296884 0.5524007</span></span>
+<span><span class="co">#&gt; [1] 0.5038898 0.5484317 0.5315789</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ari_all</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.5189077</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.5170617</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -247,7 +218,7 @@ performance by some metrics, such as <code>ARI</code>.</p>
 <p>In addition to metrics, we can use some visualization functions to
 measure the clustering results, such as the spatial scatter plot.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpaHeatMap.html">SpaHeatMap</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, item <span class="op">=</span> <span class="st">"cluster"</span>, plot_type <span class="op">=</span> <span class="st">"Scatter"</span>, layout.dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, nrow.legend <span class="op">=</span> <span class="fl">2</span>,</span>
+<code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SpaHeatMap.html">SpaHeatMap</a></span><span class="op">(</span><span class="va">iSCMEBObj</span>, item <span class="op">=</span> <span class="st">"cluster"</span>, plot_type <span class="op">=</span> <span class="st">"Scatter"</span>, layout.dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, nrow.legend <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>    no_axis <span class="op">=</span> <span class="cn">TRUE</span>, point_size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span>
 <span><span class="va">p2</span></span></code></pre></div>
 <p><img src="iSC.MEB.seqFISH_files/figure-html/unnamed-chunk-9-1.png" width="1056"></p>
